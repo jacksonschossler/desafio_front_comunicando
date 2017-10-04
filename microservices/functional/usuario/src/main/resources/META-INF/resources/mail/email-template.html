@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body style="background-color:#f0f0f0;">
+    <table border="0">
+        <tr>
+            <td height="75">&nbsp;</td>
+        </tr>
+    </table>
+    <table width="600" border="0" style="font-size:14px;font-family: 'Arial';background-color:#ffffff;margin-left: auto;margin-right: auto;box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);border-radius: 3px;" cellspacing="0" cellpadding="10">
+        <tr><td colspan="4" height="13"></td></tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+            	<!-- <img th:src="'cid:' + ${logo1}" width="68" height="84" border="0" alt="GTSAUDE Logo"
+            		style="display:block;margin:0 auto;"/> -->
+            </td>
+            <td align="left">
+            <strong>GT-Saúde </strong>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr><td colspan="4" height="11"></td></tr>
+        <tr>
+            <td colspan="4" height="5">
+                <div style="height:2px;background-color:#f0f0f0;margin-top:-12px;margin-left:-10px;margin-right:-10px;"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="2">
+				<div th:utext="${message}"></div>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="4" height="5">
+                <div style="height:2px;background-color:#f0f0f0;margin-top:-3px;margin-left:-10px;margin-right:-10px;"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="2">
+                <table width="100%" border="0" cellpadding="0" style="margin-bottom: 15px">
+                    <tr>
+                        <td width="33%" style="text-transform: uppercase;font-size:10px;" align="center">
+                            &nbsp;
+                        </td>
+                        <td width="33%" style="text-transform: uppercase;font-size:10px;" align="center">
+                            &nbsp;
+                        </td>
+                        <td width="33%" style="text-transform: uppercase;font-size:10px;" align="center">
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+    <table border="0">
+        <tr>
+            <td height="75">&nbsp;</td>
+        </tr>
+    </table>
+</body>
+</html>

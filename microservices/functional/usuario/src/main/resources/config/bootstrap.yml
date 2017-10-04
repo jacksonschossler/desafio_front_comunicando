@@ -1,0 +1,15 @@
+#GENERAL
+spring:
+  application:
+    name: usuario
+  profiles:
+    active: development
+
+#CLOUD
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8888
+      fail-fast: true
+      username: user
+      password: admin

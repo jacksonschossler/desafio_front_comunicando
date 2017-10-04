@@ -1,0 +1,69 @@
+<div><h1>tabela TESTE</h1></div>
+
+
+
+
+<td-layout>
+    <td-navigation-drawer flex sidenavTitle="Menu Desafio" logo="assets:teradata" name="Jackson Luis Schossler" email="jackson.schossler@eits.com.br">
+      <md-nav-list>
+        <a *ngFor="let item of routes" md-list-item><md-icon>{{item.icon}}</md-icon>{{item.title}}</a>
+      </md-nav-list>
+      <!-- <div td-navigation-drawer-menu>
+        <md-nav-list>
+          <a *ngFor="let item of usermenu" md-list-item><md-icon>{{item.icon}}</md-icon>{{item.title}}</a>
+        </md-nav-list>
+      </div> -->
+    </td-navigation-drawer>
+    <td-layout-nav-list #navList
+          color="accent"
+          [opened]="media.registerQuery('gt-sm') | async"
+          [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'over'"
+          [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '100%' : '100%'">
+      <div td-sidenav-toolbar-content layout="row" layout-align="start center">
+        <!-- <md-icon [routerLink]="['/']" class="md-icon-logo cursor-pointer" svgIcon="assets:github"></md-icon> -->
+        <span [routerLink]="['/']" class="cursor-pointer">Categoria</span>
+      </div>
+      <div td-toolbar-content layout="row" layout-align="start center" flex>
+        <!-- <button md-icon-button tdLayoutNavListOpen>
+          <md-icon>arrow_back</md-icon>
+        </button>
+        <span>Page Title</span>
+        <span flex></span> -->
+        <!-- <a md-icon-button mdTooltip="Docs" href="https://teradata.github.io/covalent/" target="_blank"><md-icon>chrome_reader_mode</md-icon></a>
+        <a md-icon-button mdTooltip="Github" href="https://github.com/teradata/covalent" target="_blank"><md-icon svgIcon="assets:github"></md-icon></a> -->
+      </div>
+      <md-nav-list td-sidenav-content [tdLayoutNavListClose]="!media.query('gt-sm')">
+        <ng-template let-item let-last="last" ngFor [ngForOf]="navmenu">
+          <a md-list-item>
+            <md-icon mdListAvatar>{{item.icon}}</md-icon>
+            <h3 mdLine> {{item.title}} </h3>
+            <md-icon mdListIcon >folder</md-icon>
+            <p mdLine> {{item.description}} </p>
+          </a>
+          <md-divider md-inset *ngIf="!last"></md-divider>
+        </ng-template>
+      </md-nav-list>
+      <td-layout-footer-inner>
+        Optional inner footer
+      </td-layout-footer-inner>
+      <td-layout-footer>
+        <div layout="row" layout-align="start center">
+          <!-- <span class="md-caption">Copyright &copy; 2017 Teradata. All rights reserved</span> -->
+        </div>
+      </td-layout-footer>
+    </td-layout-nav-list>
+  </td-layout>
+
+  <md-list>
+    <md-list-item *ngFor="let message of messages">
+      <md-icon mdListIcon>folder</md-icon>
+      <h3 mdLine> {{message.from}} </h3>
+      <p mdLine>
+        <span> {{message.subject}} </span>
+        <span class="demo-2"> -- {{message.content}} </span>
+      </p>
+    </md-list-item>
+  </md-list>
+
+
+

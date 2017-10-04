@@ -1,0 +1,43 @@
+#GENERAL
+spring:
+  application:
+    name: gateway
+  profiles:
+    active: development
+
+#CLOUD
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8888
+      fail-fast: true
+      username: user
+      password: admin
+
+#ZUUL 
+zuul:
+  sensitive-headers: 
+  ignored-headers:
+  add-proxy-headers: true
+
+#Global - affects every Ribbon instances (not only your services but also Eureka client!)
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+
+#Disable Hystrix timeout globally (for all services)
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false  
+
+#SECURITY
+security:
+  basic:
+    enabled: false
+  enable-csrf: false
+  ignored:
+    -/usuario/**
+    -/autenticacao

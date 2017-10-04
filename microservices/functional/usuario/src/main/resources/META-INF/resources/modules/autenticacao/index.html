@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html style="height: 100vh"
+        xmlns:th="http://www.thymeleaf.org" lang="pt">
+	<head>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	    <title>Autenticação</title>
+	    
+	    <link rel="stylesheet" href="webjars/material-design-lite/material.min.css">
+	    <link rel="stylesheet" href="static/css/theme.css"></link>
+	    <script type="text/javascript" src="webjars/material-design-lite/material.min.js"></script>
+	    <script type="text/javascript" src="static/js/jquery.min.js"></script>
+	    <script>
+		 	// Firefox 1.0+
+		    var isFirefox = typeof InstallTrigger !== 'undefined';
+	
+		    // Chrome 1+
+		    var isChrome = !!window.chrome && !!window.chrome.webstore;
+	
+		    navigator.getBrowseVersion = (function(){
+		        var ua= navigator.userAgent, tem, 
+		        M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+		        if(/trident/i.test(M[1])){
+		            tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+		            return 'IE '+(tem[1] || '');
+		        }
+		        if(M[1]=== 'Chrome'){
+		            tem= ua.match(/\b(OPR|Edge)\/(\d+)/);
+		            if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+		        }
+		        //M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+		        //if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+		        return M[2];
+		    })();
+		    
+		    var showAlertMessage = function() {
+		    	$( "body" ).ready(function() {
+		    		$("body").prepend("<div id='message' style='left: 0; position: absolute; width: 100%; top: 0;'>"+
+		    			        "<div class='alert alert-info' role='alert'>"+
+		    			           "<button type='button' id='close-alert-browser' class='close' data-dismiss='alert'>&times;</button>"+
+		    			            "<b>Atenção:</b> O navegador utilizado não é homologado, o sistema pode não funcionar corretamente, favor utilizar um dos navegadores homologados ou atualizar para versão mais recente. "+
+		    			            "<a href='https://www.google.com.br/chrome/browser/desktop/index.html' target='_blank'>Google Chrome</a> - "+
+		    			            "<a href='http://br.mozdev.org/firefox/download/' target='_blank'>Mozila Firefox</a>"+
+		    			        "</div>"+
+		    			    "</div>");
+		    		
+		    		$( "#close-alert-browser" ).click(function() {
+		    			$( "#message" ).remove();
+		    		});
+		    	});
+		    }
+		    
+		    if( !isChrome && !isFirefox )
+		    {
+		    	showAlertMessage();
+		    }
+		    else
+	    	{
+				if( isChrome && parseInt(navigator.getBrowseVersion) < 58 )
+				{
+					showAlertMessage();
+				}
+				else if( isFirefox && parseInt(navigator.getBrowseVersion) < 52 )
+				{
+					showAlertMessage();
+				}
+	    	}
+		 
+	    </script>
+	</head>
+
+	<body style="display: flex; height: 100vh; align-items: center; justify-content: center; background-color:#009688" >
+		<div style="display: flex; flex-direction: column; width: 400px; height: 400px; padding: 16px" class="mdl-color--white mdl-shadow--2dp">
+		
+		    <!--  <img height="100" th:src="@{/static/images/logo.png}" alt="eits it solutions" style="display: block; margin: 0 auto" /> -->
+		    <h1 style="align-items:center; color:#009688; display: block; margin: 0 auto;" >::eits::</h1>
+		    <h5 style="align-items:center; color:#009688; display: block; margin: 0 auto; display:none;" class="resetPass">
+		    	Recuperação de senha
+		    </h5>
+		    <form method="post" style="display: flex; flex-direction: column; margin-top:25%">
+		        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%">
+		            <input id="email" type="email" name="email" class="mdl-textfield__input">
+		            <label class="mdl-textfield__label">E-mail</label>
+		        </div>
+		        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label login" style="width: 100%">
+		            <input id="password" type="password" name="senha" class="mdl-textfield__input">
+		            <label class="mdl-textfield__label">Senha</label>
+		        </div>
+		        <button id="submit" type="button" style="background-color:#FF9800; color:#FFFFFF" class="mdl-button mdl-button--raised">Acessar</button>
+			</form>
+			<span id="message-error" style="padding-top: 14px; margin: auto; color: red; font-weight: bold;"></span>
+			
+			<div align="center">
+				<a class="login" href="#/reset-password"><small style="padding-top:10px;">ESQUECI MINHA SENHA</small></a>
+				<button id="returnToLoginBtn" type="button" class="mdl-button mdl-button--raised resetPass" style="display: none;">Voltar</button>
+			</div>
+		</div>
+		
+    	<script type="text/javascript" src="static/js/login.js"></script>
+    
+	</body>
+	
+</html>

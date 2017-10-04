@@ -1,0 +1,25 @@
+#WEB CONTAINER
+server:
+  port: 8080
+  
+#OAUTH2
+security:
+  oauth2:
+    sso:
+      loginPath: /autenticacao
+    client:
+      client-id: ${spring.application.name}
+      client-secret: 
+      client-authentication-scheme: form
+      access-token-uri: http://${server.address}:${server.port}/usuario/oauth/token
+      user-authorization-uri: http://${server.address}:${server.port}/usuario/oauth/authorize
+    resource:
+      id: ${spring.application.name}
+      service-id: ${spring.application.name}-resource
+      user-info-uri: http://${server.address}:${server.port}/usuario/api/principal
+      prefer-token-info: false
+      jwt:
+        keyValue: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAihRoCostoZBy0pZhlHfalgaspU7RWpthsA4nFdixmEbJlJBVwwU8Eo29Gm2+EP9MVNDbPI43aDLcWoEjIhyfd7Oejtvz8H/30nVigdrL1UnMOloqEWKvg1rYhYcsayWoL6kZJrPuEeoagByG9W0lNtSWExgrSksgkwexUOG69wYKtCrIuwgtiJAEbNhXCEZOiR8zBI2Jm5JcWmnN5oVjOA6j4279fkIvil24ITbPqM4Jff9iehgRoR3NAnXJPcKpiiQ83LdnGFQqdmxFcXSf3DCy498PV2Jsog1KsEaKL+FWQiAN5QNKOvFiFQkxEfOvykW5IyQbA5kURVOV01h2vQIDAQAB
+          -----END PUBLIC KEY-----

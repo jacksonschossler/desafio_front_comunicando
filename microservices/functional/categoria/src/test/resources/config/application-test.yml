@@ -1,0 +1,19 @@
+#DATA SOURCE
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/financeiro
+    username: financeiro-categoria
+    password: financeiro
+
+
+#JPA
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop 
+
+    #CACHE
+cache:
+  redis:
+    host: localhost
+    port: 6379

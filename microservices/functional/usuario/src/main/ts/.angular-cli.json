@@ -1,0 +1,36 @@
+{
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"project": {
+		"name": "usuario"
+	},
+	"apps": [
+		{
+			"name": "usuario",
+			"root": "src/usuario",
+			"deployUrl": "modules/usuario/",
+			"outDir": "../resources/META-INF/resources/modules/usuario",
+			"assets": [],
+			"index": "index.html",
+			"main": "main.ts",
+			"polyfills": "../polyfills.ts",
+			"tsconfig": "../tsconfig.app.json",
+			"prefix": "usuario",
+			"styles": [
+				"../../node_modules/@covalent/core/common/platform.scss",
+				"../theme.scss"
+			],
+			"scripts": [],
+			"environmentSource": "../environments/environment.ts",
+			"environments": {
+				"dev": "../environments/environment.ts",
+				"prod": "../environments/environment.prod.ts"
+			}
+		}
+	],
+	"defaults": {
+		"styleExt": "css",
+		"component": {
+			"spec": false
+		}
+	}
+}

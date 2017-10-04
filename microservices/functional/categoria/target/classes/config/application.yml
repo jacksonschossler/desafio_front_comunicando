@@ -1,0 +1,16 @@
+#DATA SOURCE
+spring:
+ jmx.enabled: false
+ datasource:
+   url: jdbc:postgresql://localhost:5432/financeiro
+   username: financeiro-${spring.application.name}
+   password: financeiro
+   hikari:
+     pool-name: ${spring.application.name}
+     maximum-pool-size: 3
+
+#JPA
+ jpa:
+   show-sql: true
+   hibernate:
+     ddl-auto: create-drop

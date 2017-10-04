@@ -1,0 +1,4 @@
+#REDIS SERVER
+redis.server:
+  port: 6379
+  

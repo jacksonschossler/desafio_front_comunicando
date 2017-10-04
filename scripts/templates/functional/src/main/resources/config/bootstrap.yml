@@ -1,0 +1,15 @@
+#GENERAL
+spring:
+  application:
+    name: %TEMPLATE%
+  profiles:
+    active: development
+
+#CLOUD
+  cloud:
+    config:
+      enabled: true
+      uri: http://127.0.0.1:8888
+      fail-fast: true
+      username: user
+      password: admin

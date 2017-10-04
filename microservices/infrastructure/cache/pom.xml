@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>br.com.agenda</groupId>
+		<artifactId>microservices-module</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../../</relativePath> <!-- lookup parent from repository -->
+	</parent>
+	
+	<artifactId>cache-service</artifactId>
+	
+	<properties>
+		<redis.version>0.6</redis.version>
+	</properties>
+	
+	<dependencies>
+
+		<!-- Spring Boot -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
+		<!-- Spring Cloud -->
+	    <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		
+		<!-- Redis -->
+		<dependency>
+  			<groupId>com.github.kstyrc</groupId>
+  			<artifactId>embedded-redis</artifactId>
+  			<version>${redis.version}</version>
+		</dependency>
+	</dependencies>
+
+</project>

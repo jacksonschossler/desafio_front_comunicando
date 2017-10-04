@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "dwr.debug",
+    "type": "java.lang.Boolean",
+    "description": "Enabled debug mode"
+  },
+  {
+    "name": "dwr.script-compressed",
+    "type": "java.lang.Boolean",
+    "description": "Minify the js generated"
+  },
+  {
+    "name": "cache.redis.host",
+    "type": "java.lang.String",
+    "description": "Distributed Redis host"
+  },
+  {
+    "name": "cache.redis.port",
+    "type": "java.lang.Integer",
+    "description": "Distributed Redis port"
+  }
+]}

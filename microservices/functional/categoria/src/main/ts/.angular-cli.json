@@ -1,0 +1,36 @@
+{
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"project": {
+		"name": "categoria"
+	},
+	"apps": [
+		{
+			"name": "categoria",
+			"root": "src/categoria",
+			"deployUrl": "modules/categoria/",
+			"outDir": "../resources/META-INF/resources/modules/categoria",
+			"assets": [],
+			"index": "index.html",
+			"main": "main.ts",
+			"polyfills": "../polyfills.ts",
+			"tsconfig": "../tsconfig.app.json",
+			"prefix": "categoria",
+			"styles": [
+				"../../node_modules/@covalent/core/common/platform.scss",
+				"../theme.scss"
+			],
+			"scripts": [],
+			"environmentSource": "../environments/environment.ts",
+			"environments": {
+				"dev": "../environments/environment.ts",
+				"prod": "../environments/environment.prod.ts"
+			}
+		}
+	],
+	"defaults": {
+		"styleExt": "css",
+		"component": {
+			"spec": false
+		}
+	}
+}

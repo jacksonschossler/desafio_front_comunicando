@@ -1,0 +1,31 @@
+{
+	"/registro": {
+		"target": "http://127.0.0.1:8080/registro",
+		"changeOrigin": true,
+		"secure": false,
+		"pathRewrite": {
+			"^/registro": ""
+		},
+		"logLevel": "debug"
+	},
+
+	"/broker": {
+		"target": "http://127.0.0.1:8080/registro/broker",
+		"changeOrigin": true,
+		"secure": false,
+		"pathRewrite": {
+			"^/broker": ""
+		},
+		"logLevel": "debug"
+	},
+
+	"/static": {
+		"target": "http://127.0.0.1:8080/registro/static",
+		"changeOrigin": true,
+		"secure": false,
+		"pathRewrite": {
+			"^/static": ""
+		},
+		"logLevel": "debug"
+	}
+}

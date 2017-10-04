@@ -1,0 +1,66 @@
+ <form class="categoria-form" [formGroup]="formulario">
+
+    <md-card>
+        
+            <h1 style="text-align : center ; color: #6E6E6E;">
+                    <!-- <a *ngIf="!categoria.id">Cadastrar Categoria</a>
+                    <a *ngIf="categoria.id">Editar Categoria</a> -->
+                    <a>Cadastrar Categoria</a>
+            </h1>
+
+            <div class="categoria-form-div">
+                    <md-input-container class="categoria-form-input push" >
+                            <md-form-field class="categoria-full-width">
+                                <input type="text" placeholder="Tipo contábil" mdInput [formControl]="myControl"
+                                    [mdAutocomplete]="auto">
+                                <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayTipo">
+                                    <md-option *ngFor="let tipo of tipos" [value]="tipo">
+                                            {{ tipo.viewValue }}
+                                    </md-option>
+                                </md-autocomplete>
+                            </md-form-field>
+                    </md-input-container>
+            </div>
+            <div class="categoria-form-div">
+          
+                    <md-input-container class="categoria-form-input push" >
+                            <md-form-field class="categoria-full-width">
+                                <input mdInput #message maxlength="144" placeholder="Nome"
+                                    mdInput [formControl]="myControl">
+                                
+                            </md-form-field>
+                            <md-hint class= "categoria-form-text" align="start">Digite um nome para a Categoria</md-hint>
+                            <md-hint class= "categoria-form-text"  align="end">{{message.value.length}} / 144</md-hint>
+                    </md-input-container>
+                    
+            </div>
+
+            
+            
+                <div class="categoria-form-div">
+                    <md-input-container class="categoria-form-descricao push">
+                        
+                                
+                                  <md-form-field class="example-full-width">
+                                    <input mdInput #message2 maxlength="256" placeholder="Descrição">
+                                    
+                                  </md-form-field>
+                                  <md-hint class= "categoria-form-text"  align="start">Digite um comentário para a categoria</md-hint>
+                                  <md-hint class= "categoria-form-text"  align="end">{{message2.value.length}} / 256</md-hint>
+                                  
+                    </md-input-container>    
+                </div>
+
+                <div class="categoria-form-div push" align="end">
+                        <button md-raised-button color="primary">Salvar</button>
+                        
+                        <!-- <button md-raised-button [routerLink]="['']">Voltar</button> -->
+
+                </div>
+
+
+
+    
+    </md-card>
+    
+</form>

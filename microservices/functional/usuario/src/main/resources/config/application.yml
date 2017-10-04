@@ -1,0 +1,9 @@
+#WEB CONTAINER
+server:
+  session:
+    cookie:
+      #IMPORTANT! We need to rename the session cookie name to avoid conflit.
+      name: UAASESSIONID
+      
+#URL
+url.context: http://127.0.0.1:8080

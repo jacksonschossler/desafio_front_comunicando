@@ -1,0 +1,3 @@
+#WEB CONTAINER
+server:
+  port: 8761

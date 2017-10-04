@@ -1,0 +1,31 @@
+{
+	"/%TEMPLATE%": {
+		"target": "http://127.0.0.1:8080/%TEMPLATE%",
+		"changeOrigin": true,
+		"secure": false,
+		"pathRewrite": {
+			"^/%TEMPLATE%": ""
+		},
+		"logLevel": "debug"
+	},
+
+	"/broker": {
+		"target": "http://127.0.0.1:8080/%TEMPLATE%/broker",
+		"changeOrigin": true,
+		"secure": false,
+		"pathRewrite": {
+			"^/broker": ""
+		},
+		"logLevel": "debug"
+	},
+
+	"/static": {
+		"target": "http://127.0.0.1:8080/%TEMPLATE%/static",
+		"changeOrigin": true,
+		"secure": false,
+		"pathRewrite": {
+			"^/static": ""
+		},
+		"logLevel": "debug"
+	}
+}

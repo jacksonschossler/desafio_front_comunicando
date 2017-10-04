@@ -1,0 +1,106 @@
+#DATA SOURCE
+spring:
+  jmx.enabled: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/financeiro
+    username: financeiro-${spring.application.name}
+    password: financeiro
+    hikari:
+      pool-name: ${spring.application.name}
+      maximum-pool-size: 3
+
+#JPA
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+          
+#THYMELEAF
+  thymeleaf:
+    cache: false
+  cloud:
+    config:
+      allowOverride: true
+      overrideNone: true
+    
+#STATIC RESOURCES
+  resources:
+    chain:
+      cache: false
+
+#MAIL
+  mail:
+    host: expressodev.prognus.com.br
+    port: 25
+    username: no-reply
+    password: soAsx2gGX6Rbhk
+    from: no-reply@prognus.org
+    properties:
+      mail.smtp.starttls.enable: false
+      mail.properties.mail.smtp.starttls.required: false
+      mail.properties.mail.smtp.ssl.enable: false
+      mail.properties.mail.smtps.debug: true
+      mail.properties.mail.smtp.debug: true
+      mail.properties.mail.debug: true
+
+#FILE UPLOAD
+  http:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+            
+#OAUTH2
+security:
+  oauth2:
+    sso:
+      loginPath: /autenticacao
+    client:
+      client-id: ${spring.application.name}
+      client-secret: 
+      client-authentication-scheme: form
+      access-token-uri: http://127.0.0.1:8080/usuario/oauth/token
+      user-authorization-uri: http://127.0.0.1:8080/usuario/oauth/authorize
+    resource:
+      id: ${spring.application.name}
+      service-id: ${spring.application.name}-resource
+      user-info-uri: http://127.0.0.1:8080/usuario/api/principal
+      prefer-token-info: false
+      jwt:
+        keyValue: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAihRoCostoZBy0pZhlHfalgaspU7RWpthsA4nFdixmEbJlJBVwwU8Eo29Gm2+EP9MVNDbPI43aDLcWoEjIhyfd7Oejtvz8H/30nVigdrL1UnMOloqEWKvg1rYhYcsayWoL6kZJrPuEeoagByG9W0lNtSWExgrSksgkwexUOG69wYKtCrIuwgtiJAEbNhXCEZOiR8zBI2Jm5JcWmnN5oVjOA6j4279fkIvil24ITbPqM4Jff9iehgRoR3NAnXJPcKpiiQ83LdnGFQqdmxFcXSf3DCy498PV2Jsog1KsEaKL+FWQiAN5QNKOvFiFQkxEfOvykW5IyQbA5kURVOV01h2vQIDAQAB
+          -----END PUBLIC KEY-----
+
+#LOGGING
+logging.level:
+  org.hibernate: INFO
+  org.glassfish.jersey: INFO
+  org.directwebremoting: INFO
+  org.springframework.web: INFO
+  org.springframework.context.support: INFO
+  org.springframework.security: INFO
+
+#FLYWAY
+flyway:
+  enabled: true
+
+#DWR
+dwr:
+  debug: true
+  cross-domain-session-security: false
+
+#CACHE
+cache:
+  redis:
+    host: localhost
+    port: 6379
+
+#SERVER
+server:
+  tomcat:
+    max-threads: 4
+  session:
+    timeout: 1800
+    
+#URL
+url.context: http://127.0.0.1:8080

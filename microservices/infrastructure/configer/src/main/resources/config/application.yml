@@ -1,0 +1,23 @@
+#GENERAL
+spring:
+  application:
+    name: configer
+  profiles:
+    active: native
+
+#CLOUD    
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config/shared
+        bootstrap: true
+
+#SECURITY
+security:
+  user:
+    password: admin
+
+#WEB CONTAINER
+server:
+  port: 8888

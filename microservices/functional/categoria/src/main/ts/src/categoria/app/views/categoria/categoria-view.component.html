@@ -1,0 +1,140 @@
+<md-card>
+
+  <div>
+    <h1 style="text-align : center ; color: #6E6E6E;">Lista de Categorias</h1>
+  </div>
+
+  <md-divider></md-divider>
+
+  <div layout="row" flex>
+    <md-card style="min-height: 50px; min-width:99%">
+
+
+      <div layout="row">
+
+        
+          <md-input-panel  flex="10" class="push" style="padding-top : 15px">
+            <md-select placeholder="Tipo">
+              <md-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                {{ tipo.viewValue }}
+              </md-option> 
+            </md-select>
+          </md-input-panel>
+
+          <md-input-container flex="15" class="push">
+            <input mdInput  placeholder="Nome" >
+          </md-input-container>
+
+          <md-input-container flex="50" class="push">
+              <input mdInput style="text-align : center" placeholder="Descrição " >
+          </md-input-container>
+
+          <button md-raised-button class="push"  color="warn" (click)="filtrar(filtro)">Filtrar</button>
+
+
+      </div>
+
+    </md-card>
+
+
+  </div>
+
+  <!-- <table td-data-table>
+                  <thead>
+                          <tr td-data-table-column-row>
+
+                                  <th style="width: 5%; text-align: center" td-data-table-column [numeric]="1"><strong>Tipo</strong></th>
+                                  <th style="padding-left: 50px; width: 25%; text-align: left" td-data-table-column [numeric]="2"><strong>Nome</strong></th>
+                                  <th style="width: 15%; text-align: left" td-data-table-column [numeric]="3"><strong>Desativada</strong></th>
+                                  <th style="width: 15%; text-align: left" td-data-table-column [numeric]="4"><strong></strong></th>
+                                  <th style="width: 15%; text-align: left" td-data-table-column [numeric]="5"><strong>Ação</strong></th>
+
+                          </tr>
+                  </thead>
+                  <tbody>
+                         
+                  </tbody>
+          </table> -->
+
+  <md-divider></md-divider>
+
+  <div flex layout="row">
+    <div flex></div>
+    <!-- <button flex="20" class="push" md-raised-button [routerLink]="['']">Voltar</button> -->
+  </div>
+
+    
+      <md-divider></md-divider>
+
+
+  <md-panel-title class="push">
+        <div flex="15"> <strong>Tipo</strong></div>
+        <div flex="24"><strong>Nome</strong></div>
+        <div flex="16"> <strong>Desativada</strong></div>
+        <span flex="33"> <strong></strong></span>
+        <div flex="15"> <strong>Ação</strong></div> 
+  </md-panel-title>
+  <div *ngFor="let categoria of categorias">
+    <md-expansion-panel >
+      <md-expansion-panel-header>
+        <md-panel-title class ="zebra" >
+          
+            <div flex="15">{{categoria.tipo}}</div>
+            <div flex="25">{{categoria.nome}}</div>
+            <div flex="15">{{categoria.desativada}}</div>
+            <div flex></div>
+            <div flex="15"></div>
+        
+        </md-panel-title>
+
+      </md-expansion-panel-header>
+
+      <div layout="row">
+        
+        <span flex="85" style="color: #6E6E6E">
+          Descrição: {{categoria.descricao}}
+        </span>
+        <div flex>
+          <a  md-icon-button mdTooltip="Ativar/Desativar">
+          <md-icon>block</md-icon>
+          </a>
+          <a  md-icon-button mdTooltip="Editar">
+              <md-icon>edit</md-icon>
+          </a>
+          <a  md-icon-button mdTooltip="Excluir">
+              <md-icon>delete</md-icon>
+          </a>
+        </div>
+
+      </div>
+    </md-expansion-panel>
+  </div>
+
+  <!-- <table td-data-table>
+              <thead>
+
+              </thead>
+              <tbody>
+                      <tr td-data-table-row *ngFor="let categoria of categorias">
+                          <md-expansion-panel>
+                              <md-expansion-panel-header>
+                                <md-panel-title>
+                                    <td style="width: 5%;  text-align: left" td-data-table-cell [numeric]="1">{{categoria.tipo}}</td>
+                                    <td style="width: 25% ; text-align: left" td-data-table-cell [numeric]="2">{{categoria.nome}}</td>
+                                    <td style="width: 15% ; text-align: left" td-data-table-cell [numeric]="3">{{categoria.desativada}}</td>
+                                    <td style="width: 15% ; text-align: left" td-data-table-cell [numeric]="4"></td>
+                                    <td style="width: 15% ; text-align: left" td-data-table-cell [numeric]="5">Ação</td>
+                                </md-panel-title>
+                   
+                              </md-expansion-panel-header>
+                              
+                                
+                                <a style="padding-left: 49px; max-width: 40px; color: #6E6E6E">Descrição: 
+                    
+                                {{categoria.descricao}}</a>
+                              
+                            </md-expansion-panel>
+                      </tr>
+              </tbody>
+      </table> -->
+</md-card>

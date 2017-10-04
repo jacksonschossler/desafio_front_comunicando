@@ -1,0 +1,29 @@
+<td-layout>
+        
+            <td-navigation-drawer flex sidenavTitle="Controle financeiro" name="Jackson Luis Schossler">
+                <md-nav-list>
+                    <a *ngFor="let item of menus" md-list-item md-list-item [routerLink]="item.route">
+                        <md-icon>{{item.icon}}</md-icon>{{item.title}}</a>
+                </md-nav-list>
+        
+                <!-- <div td-navigation-drawer-menu>
+                    <md-nav-list>
+                        <a *ngFor="let item of usermenu" md-list-item md-list-item [routerLink]="item.route">
+                            <md-icon>{{item.icon}}</md-icon>{{item.title}}</a>
+                    </md-nav-list>
+                </div> -->
+            </td-navigation-drawer>
+        
+        
+             <td-layout-nav toolbarTitle="Controle de Registros Financeiros" > 
+                <!-- <button md-icon-button td-menu-button tdLayoutToggle>
+                    <md-icon>menu</md-icon>
+                </button> -->
+                <router-outlet></router-outlet>
+                    <!-- Aqui é meu content -->
+                    
+                    <!-- Aqui é meu content -->
+                
+            </td-layout-nav>
+        
+        </td-layout>

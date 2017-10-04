@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>br.com.agenda</groupId>
+		<artifactId>microservices-functional-module</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../</relativePath> <!-- lookup parent from repository -->
+	</parent>
+	
+	<properties>
+		<!-- Mail -->
+		<mvn.mail.host>expressodev.prognus.com.br</mvn.mail.host>
+		<mvn.mail.port>25</mvn.mail.port>
+		<mvn.mail.username>no-reply</mvn.mail.username>
+		<mvn.mail.password>soAsx2gGX6Rbhk</mvn.mail.password>
+		<mvn.mail.from>no-reply@prognus.org</mvn.mail.from>
+		<mvn.mail.ttls>false</mvn.mail.ttls>
+		<mvn.mail.ssl>false</mvn.mail.ssl>
+		<mvn.mail.debug>true</mvn.mail.debug>
+	</properties>	
+
+	<artifactId>usuario-service</artifactId>
+	
+	<dependencies>
+		<!-- Application -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>common-functional-microservices</artifactId>
+		</dependency>
+		
+		<!-- GT Saude -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>usuario-domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+    	<!-- Others -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+  			<artifactId>postgresql</artifactId>
+  		</dependency>
+  		
+		<!-- WebJars -->
+  		<dependency>
+    		<groupId>org.webjars</groupId>
+    		<artifactId>webjars-locator</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.webjars.bower</groupId>
+		    <artifactId>material-design-lite</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

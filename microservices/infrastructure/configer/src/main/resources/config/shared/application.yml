@@ -1,0 +1,65 @@
+#GENERAL
+spring:
+  jmx.enabled: false
+#JPA
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        default_schema: ${spring.application.name}
+        dialect: br.com.agenda.common.infrastructure.hibernate.dialect.PostgreSQLDialect
+        id.new_generator_mappings: true
+        cache.use_second_level_cache: true
+      org.hibernate.envers:
+          audit_table_suffix: _auditado
+          revision_field_name: revisao
+          revision_type_field_name: tipo_revisao
+          
+#STATIC RESOURCES
+  resources:
+    chain:
+      cache: false
+      strategy:
+        content:
+          enabled: true
+          
+#THYMELEAF
+  thymeleaf:
+    mode: HTML
+    cache: false
+    prefix: classpath:/META-INF/resources/
+    suffix: .html
+
+#FLYWAY
+flyway:
+  enabled: true
+  check-location: true
+  schemas: ${spring.application.name}
+  locations: classpath:db/migration
+  baseline-version: 0
+  baseline-on-migrate: true
+  sql-migration-prefix: v
+
+#DWR
+dwr:
+  debug: true
+  script-compressed: true
+  
+#FEIGN
+feign:
+  hystrix:
+    enabled: false
+#hystrix.command.default.execution.isolation.strategy: SEMAPHORE
+  
+#WEB CONTAINER
+server:
+  port: 0
+  tomcat:
+    redirect-context-root: true
+  compression.enabled: true
+  session:
+    persistent: true
+    timeout: 1800

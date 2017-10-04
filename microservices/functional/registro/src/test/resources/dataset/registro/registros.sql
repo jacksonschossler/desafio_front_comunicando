@@ -1,0 +1,51 @@
+SET search_path = registros, pg_catalog;
+
+TRUNCATE registro.registro CASCADE;
+
+INSERT INTO registro.registro
+			(id, 
+			atualizacao,
+			criacao,
+			versao,
+			categoria,
+			data,
+			descricao,
+			tipo
+			,valor)
+			
+VALUES 		(17,
+			now(),
+			now(),
+			1,
+			17,
+			now(),
+			'salario do mes de novembro',
+			1,
+			15.50),
+			(18,
+			now(),
+			now(),
+			1,
+			17,
+			now(),
+			'salario do mes de junho',
+			1,
+			2215.50),
+			(19,
+			now(),
+			now(),
+			1,
+			17,
+			now(),
+			'salario do mes de janeiro',
+			1,
+			1.50),
+			(20,
+			now(),
+			now(),
+			1,
+			18,
+			now(),
+			'salario do mes de fevereiro',
+			1,
+			153.50)
