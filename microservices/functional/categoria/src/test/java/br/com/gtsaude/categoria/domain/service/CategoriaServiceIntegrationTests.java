@@ -31,6 +31,16 @@ public class CategoriaServiceIntegrationTests extends AbstractIntegrationTests {
 		assertNotNull(categoriaSaved);
 	}
 	
+	//@Test
+	public void insertCategoriaWithoutDesativadaMustPass() {
+		Categoria categoria = new Categoria();
+		categoria.setNome("Salario da empregada");
+		categoria.setTipo(Tipo.RECEITA);
+		categoria.setDescricao("descricao cat sem desativada");
+		Categoria categoriaSaved = this.categoriaService.insertCategoria(categoria);
+		assertNotNull(categoriaSaved);
+	}
+	
 	//@Test(expected = ValidationException.class)
 	public void insertCategoriaWithoutNomeMustFail() {
 		
@@ -101,7 +111,7 @@ public class CategoriaServiceIntegrationTests extends AbstractIntegrationTests {
 	
 	//@Test
 	public void removeCategoriaMustPass() {
-		categoriaService.removeCategoria(20L);
+		categoriaService.removeCategoria(333L);
 	}
 	
 	//@Test(expected = nullPointerException.class)

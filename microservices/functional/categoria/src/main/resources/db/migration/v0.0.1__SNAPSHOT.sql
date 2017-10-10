@@ -1,4 +1,4 @@
-CREATE TABLE revisao
+CREATE TABLE IF NOT EXISTS categoria.revisao
 (
   id bigserial NOT NULL,
   id_usuario bigint,
@@ -6,7 +6,7 @@ CREATE TABLE revisao
   CONSTRAINT revisao_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE entidade_revisao
+CREATE TABLE IF NOT EXISTS categoria.entidade_revisao
 (
   revisao bigint NOT NULL,
   entidade character varying(255),

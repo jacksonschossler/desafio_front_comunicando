@@ -1,11 +1,19 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
+import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
+import { RegistroFormComponent } from './views/form/registro-form.component';
+import { RegistroListComponent } from './views/list/registro-list.component';
+import { RegistroChartComponent } from './views/chart/registro-chart.component';
 
 const routes: Routes = [
 	{
-		path: '',
-		redirectTo: '/',
-		pathMatch: 'full'
+		path: 'registro',
+		children:[
+			{path: 'list', component :RegistroListComponent},
+			{path: 'form', component :RegistroFormComponent},
+			{path: 'chart', component :RegistroChartComponent},
+			{path: 'edit/:id', component :RegistroFormComponent}
+		]
 	},
 ];
 

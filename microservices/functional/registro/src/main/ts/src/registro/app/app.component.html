@@ -1,0 +1,22 @@
+<td-layout>
+
+    <td-navigation-drawer flex sidenavTitle="Controle financeiro" name="Jackson Luis Schossler">
+        <md-nav-list>
+            <a md-list-item *ngFor="let item of menus" [routerLink]="item.route">
+                <md-icon>{{item.icon}}</md-icon>{{item.title}}
+            </a>
+        </md-nav-list>
+
+    </td-navigation-drawer>
+
+
+    <td-layout-nav style="background-color:#DDDDDD" layout-fill toolbarTitle="Controle dee Registros Financeiros">
+
+        <router-outlet></router-outlet>
+        <!-- Aqui é meu content -->
+
+        <!-- Aqui é meu content -->
+
+    </td-layout-nav>
+
+</td-layout>

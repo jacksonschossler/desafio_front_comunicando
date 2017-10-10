@@ -50,6 +50,7 @@ public interface ICategoriaRepository extends JpaRepository<Categoria, Long> {
 	@Query(value=" FROM Categoria categoria " +
 			" WHERE " 
 			+ " ((:tipo IS NULL) OR (categoria.tipo = :tipo)) "
+			//+ " (FILTER(categoria.tipo, :tipo) = TRUE) "
 			+ " AND (FILTER(categoria.nome, :nome) = TRUE) "
 			+ " AND (FILTER(categoria.descricao, :descricao) = TRUE) "
 	)
@@ -57,12 +58,16 @@ public interface ICategoriaRepository extends JpaRepository<Categoria, Long> {
 											@Param("nome") String nome,
 											@Param("descricao") String descricao,
 											Pageable pageable );
-
-
-
-		
-
-
+	
+	
+	@Query(value=" FROM Categoria categoria " +
+			" WHERE " 
+			+ " (FILTER(categoria.nome, :nome) = TRUE) "
+			+ " AND (categoria.desativada = false) "
+	)
+	public Page<Categoria> listByFiltersDesativada (  @Param("nome") String nome,
+											//@Param("desativada") Boolean desativada,
+											Pageable pageable );
 
 
 

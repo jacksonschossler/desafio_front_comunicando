@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
+import br.com.agenda.categoria.domain.entity.Categoria;
 import br.com.agenda.registro.domain.entity.Registro;
 
 @Component

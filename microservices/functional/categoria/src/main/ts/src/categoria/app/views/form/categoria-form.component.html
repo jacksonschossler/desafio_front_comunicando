@@ -1,36 +1,50 @@
- <form class="categoria-form" [formGroup]="formulario">
+ <form #myForm="ngForm" class="categoria-form" [formGroup]="formulario">
 
     <md-card>
         
             <h1 style="text-align : center ; color: #6E6E6E;">
-                    <!-- <a *ngIf="!categoria.id">Cadastrar Categoria</a>
-                    <a *ngIf="categoria.id">Editar Categoria</a> -->
-                    <a>Cadastrar Categoria</a>
+                    <a *ngIf="!categoria.id">Cadastrar Categoria</a>
+                    <a *ngIf="categoria.id">Editar Categoria</a>
+                    <!-- <a>Cadastrar Categoria</a> -->
             </h1>
 
             <div class="categoria-form-div">
-                    <md-input-container class="categoria-form-input push" >
+
+                    <!-- <md-input-container class="categoria-form-input push" >
                             <md-form-field class="categoria-full-width">
-                                <input type="text" placeholder="Tipo contábil" mdInput [formControl]="myControl"
-                                    [mdAutocomplete]="auto">
+                                <input mdInput type="text" placeholder="Tipo contábil"  formControlName="tipoForm"
+                                [(ngModel)]="categoria.tipo" [mdAutocomplete]="auto">
                                 <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayTipo">
-                                    <md-option *ngFor="let tipo of tipos" [value]="tipo">
+                                    <md-option *ngFor="let tipo of tipos" [value]="tipo.viewValue">
                                             {{ tipo.viewValue }}
                                     </md-option>
                                 </md-autocomplete>
                             </md-form-field>
-                    </md-input-container>
+                    </md-input-container> -->
+
+                    <!-- <md-input-container class="categoria-form-input push" > -->
+                            <!-- <md-form-field> -->
+                                <md-select class="push" placeholder="Tipo contábil"  formControlName="tipoForm"
+                                [(ngModel)]="categoria.tipo">
+                                    <md-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                                            {{ tipo.viewValue }}
+                                    </md-option>
+                                </md-select>
+                            <!-- </md-form-field> -->
+                    <!-- </md-input-container> -->
+
+
             </div>
             <div class="categoria-form-div">
           
                     <md-input-container class="categoria-form-input push" >
                             <md-form-field class="categoria-full-width">
-                                <input mdInput #message maxlength="144" placeholder="Nome"
-                                    mdInput [formControl]="myControl">
-                                
+                                <input mdInput #message maxlength="144" placeholder="Nome" 
+                                        formControlName="nomeForm" [(ngModel)]="categoria.nome">
                             </md-form-field>
                             <md-hint class= "categoria-form-text" align="start">Digite um nome para a Categoria</md-hint>
                             <md-hint class= "categoria-form-text"  align="end">{{message.value.length}} / 144</md-hint>
+                            <md-error>Este Campo é obrigatório</md-error>
                     </md-input-container>
                     
             </div>
@@ -42,17 +56,16 @@
                         
                                 
                                   <md-form-field class="example-full-width">
-                                    <input mdInput #message2 maxlength="256" placeholder="Descrição">
-                                    
+                                    <input mdInput #message2 maxlength="256" placeholder="Descrição" 
+                                        formControlName="descricaoForm" [(ngModel)]="categoria.descricao" >
                                   </md-form-field>
                                   <md-hint class= "categoria-form-text"  align="start">Digite um comentário para a categoria</md-hint>
                                   <md-hint class= "categoria-form-text"  align="end">{{message2.value.length}} / 256</md-hint>
-                                  
                     </md-input-container>    
                 </div>
 
                 <div class="categoria-form-div push" align="end">
-                        <button md-raised-button color="primary">Salvar</button>
+                        <button md-raised-button color="warn" (click)="insertCategoria(categoria)">Salvar</button>
                         
                         <!-- <button md-raised-button [routerLink]="['']">Voltar</button> -->
 

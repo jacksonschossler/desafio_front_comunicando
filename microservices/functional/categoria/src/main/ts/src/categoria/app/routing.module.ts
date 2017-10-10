@@ -11,7 +11,8 @@ const routes: Routes = [
 		children: [
 			{path: 'list', component :CategoriaViewComponent},
 			{path: 'form', component :CategoriaFormComponent},
-			{path: 'detail', component :CategoriaDetailComponent}
+			{path: 'detail', component :CategoriaDetailComponent},
+			{path: 'edit/:id', component :CategoriaFormComponent}
 		]
 	},	
 	//{path: '**', redirectTo: ''}

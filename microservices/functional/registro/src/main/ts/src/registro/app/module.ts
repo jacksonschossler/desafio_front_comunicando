@@ -1,13 +1,22 @@
+
+
+import { AppComponent } from './app.component';
+import { RegistroFormComponent } from './views/form/registro-form.component';
+import { RegistroListComponent } from './views/list/registro-list.component';
+import { RegistroChartComponent } from './views/chart/registro-chart.component';
+
 //===============================ANGULAR MODULES=================================
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+
 import {
   MdAutocompleteModule,
   MdButtonModule,
   MdButtonToggleModule,
   MdCardModule,
   MdCheckboxModule,
+  MdExpansionModule,
   MdDatepickerModule,
   MdDialogModule,
   MdIconModule,
@@ -22,11 +31,12 @@ import {
   MdSlideToggleModule,
   MdSnackBarModule,
   MdToolbarModule,
-  MdTooltipModule
+  MdGridListModule,
+  MdTooltipModule,
 } from '@angular/material';
 
-import { FormsModule } from '@angular/forms';
-import { Http } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Http, HttpModule } from '@angular/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -68,8 +78,13 @@ export function HttpLoaderFactory(http: Http) {
  */
 @NgModule({
   declarations: [
+    AppComponent,
+    RegistroFormComponent,
+    RegistroListComponent,
+    RegistroChartComponent
   ],
   imports: [
+    HttpModule,
     BrowserAnimationsModule,
     BrowserModule,
     CovalentLayoutModule,
@@ -95,6 +110,7 @@ export function HttpLoaderFactory(http: Http) {
     MdSidenavModule,
     MdSnackBarModule,
     MdDialogModule,
+    MdExpansionModule,
     MdCardModule,
     MdButtonModule,
     MdToolbarModule,
@@ -105,6 +121,7 @@ export function HttpLoaderFactory(http: Http) {
     MdProgressSpinnerModule,
     MdButtonToggleModule,
     FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -123,7 +140,12 @@ export function HttpLoaderFactory(http: Http) {
     TdLayoutComponent,
     TdDialogService,
   ],
-  bootstrap: [],
+  bootstrap: [
+    AppComponent,
+    RegistroFormComponent,
+    RegistroListComponent,
+    RegistroChartComponent
+  ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ]

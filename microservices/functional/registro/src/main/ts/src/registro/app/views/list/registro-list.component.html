@@ -1,0 +1,99 @@
+<md-card>
+  <div>
+    <h2 style="text-align : center ; color: #6E6E6E;">Lista de Categorias</h2>
+  </div>
+
+  <md-divider></md-divider>
+
+  <div layout="row" flex>
+    <md-card style="min-height: 50px; min-width:99%">
+
+
+      <div layout="row">
+
+
+        <md-input-panel flex="10" class="push" style="padding-top : 15px">
+          <md-select placeholder="Mês" [(ngModel)]="filtro.mes">
+            <md-option *ngFor="let mes of meses" [value]="mes.value">
+              {{ mes.viewValue }}
+            </md-option>
+          </md-select>
+        </md-input-panel>
+
+        <md-input-container flex="15" class="push">
+          <input mdInput maxlength="4" placeholder="Ano" [(ngModel)]="filtro.ano">
+        </md-input-container>
+
+        <button md-raised-button class="push" style="height: 36px " color="warn" (click)="filtrar(filtro)">Filtrar</button>
+
+
+      </div>
+
+    </md-card>
+
+
+  </div>
+
+
+  <md-panel-title class="push">
+    <div flex="15"> <strong>Tipo</strong></div>
+    <div flex="24"><strong>Categoria</strong></div>
+    <div flex="16"> <strong>Data</strong></div>
+    <span flex="33"> <strong></strong></span>
+    <div flex="15"> <strong>Valor</strong></div>
+  </md-panel-title>
+  <div *ngFor="let registro of registros">
+    <md-expansion-panel>
+      <md-expansion-panel-header>
+        <md-panel-title class="zebra">
+
+          <div flex="15"> {{registro.tipo}}</div>
+          <div flex="25">{{registro.categoria.nome }}</div>
+          <div flex="15"> {{registro?.data | date: "dd/MM/yyyy" }}</div>
+          <div flex="35" style=" text-align: right">{{registro.valor | number:".2-2"}}</div>
+          <div flex="10"></div>
+
+        </md-panel-title>
+
+      </md-expansion-panel-header>
+
+      <div layout="row">
+
+        <span flex="85" style="color: #6E6E6E">
+          Descrição: {{registro.descricao}}
+        </span>
+        <div flex>
+
+
+          <a md-icon-button mdTooltip="Ativar/Desativar">
+            <md-icon>block</md-icon>
+          </a>
+
+
+          <a md-icon-button mdTooltip="Editar">
+            <md-icon>edit</md-icon>
+          </a>
+
+
+          <a md-icon-button mdTooltip="Excluir">
+            <md-icon>delete</md-icon>
+          </a>
+        </div>
+
+      </div>
+    </md-expansion-panel>
+  </div>
+
+  <md-input-container>
+    <md-form-field>
+      <input type="text" placeholder="aeeee" mdInput [(ngModel)]="registro.categoria" [mdAutocomplete]="auto">
+      <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayCategoria">
+        <md-option *ngFor="let registro  of registros" [value]="registro">
+          {{ registro.categoria.nome }}
+        </md-option>
+      </md-autocomplete>
+    </md-form-field>
+  </md-input-container>
+
+
+</md-card>

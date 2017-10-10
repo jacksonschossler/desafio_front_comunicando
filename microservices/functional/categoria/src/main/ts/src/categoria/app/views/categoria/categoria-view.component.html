@@ -14,7 +14,7 @@
 
         
           <md-input-panel  flex="10" class="push" style="padding-top : 15px">
-            <md-select placeholder="Tipo">
+            <md-select placeholder="Tipo" [(ngModel)]="filtro.tipo">
               <md-option *ngFor="let tipo of tipos" [value]="tipo.value">
                 {{ tipo.viewValue }}
               </md-option> 
@@ -22,11 +22,11 @@
           </md-input-panel>
 
           <md-input-container flex="15" class="push">
-            <input mdInput  placeholder="Nome" >
+            <input mdInput  placeholder="Nome" [(ngModel)]="filtro.nome" >
           </md-input-container>
 
           <md-input-container flex="50" class="push">
-              <input mdInput style="text-align : center" placeholder="Descrição " >
+              <input mdInput placeholder="Descrição" [(ngModel)]="filtro.descricao" >
           </md-input-container>
 
           <button md-raised-button class="push"  color="warn" (click)="filtrar(filtro)">Filtrar</button>
@@ -81,7 +81,8 @@
           
             <div flex="15">{{categoria.tipo}}</div>
             <div flex="25">{{categoria.nome}}</div>
-            <div flex="15">{{categoria.desativada}}</div>
+            <div flex="15" *ngIf="categoria.desativada == true">sim</div>
+            <div flex="15" *ngIf="categoria.desativada == false">não</div>
             <div flex></div>
             <div flex="15"></div>
         
@@ -95,13 +96,19 @@
           Descrição: {{categoria.descricao}}
         </span>
         <div flex>
-          <a  md-icon-button mdTooltip="Ativar/Desativar">
-          <md-icon>block</md-icon>
+          
+          
+         <a  md-icon-button mdTooltip="Ativar/Desativar" (click)="updateCategoriaToDesativada(categoria.id)" >
+            <md-icon>block</md-icon>
           </a>
-          <a  md-icon-button mdTooltip="Editar">
+
+
+          <a md-icon-button mdTooltip="Editar" [routerLink]="['../edit',categoria.id]">
               <md-icon>edit</md-icon>
           </a>
-          <a  md-icon-button mdTooltip="Excluir">
+
+
+          <a  md-icon-button mdTooltip="Excluir" (click)="removeCategoria(categoria.id)">
               <md-icon>delete</md-icon>
           </a>
         </div>

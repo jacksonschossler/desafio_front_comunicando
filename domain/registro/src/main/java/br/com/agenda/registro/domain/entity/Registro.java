@@ -58,7 +58,7 @@ public class Registro extends AbstractEntity implements Serializable{
 	
 	
 	
-
+	
 	
 	
 	/*-------------------------------------------------------------------

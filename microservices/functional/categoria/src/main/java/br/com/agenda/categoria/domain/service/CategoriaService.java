@@ -19,6 +19,7 @@ import br.com.agenda.categoria.domain.entity.Tipo;
 import br.com.agenda.categoria.domain.repository.ICategoriaRepository;
 import br.com.agenda.common.application.i18n.MessageSourceHolder;
 import br.com.agenda.registro.application.restful.IRegistroResource;
+import br.com.agenda.registro.domain.entity.Registro;
 import br.com.agenda.categoria.domain.entity.Categoria;
 //import br.com.agenda.registro.application.restful.IRegistroResource;
 
@@ -70,16 +71,20 @@ public class CategoriaService implements ICategoriaResource{
 	public Page<Categoria> listCategoriaByFilters(String nome, PageRequest pageRequest)
 	{
 		return this.categoriaRepository.listByFilters(nome, pageRequest);
-		
-		
 	}
 	
 	
-	public Page<Categoria> listCategoriaByFiltersFull(String nome, Tipo tipo, String descricao, PageRequest pageRequest)
+	public Page<Categoria> listCategoriaByFiltersFull(Tipo tipo, String nome,String descricao, PageRequest pageRequest)
 	{
 		return this.categoriaRepository.listByFiltersFull(tipo, nome, descricao, pageRequest);
 		
 		
+	}
+	
+	@Override
+	public Page<Categoria>listCategoriaByFiltersDesativada(String nome, PageRequest pageRequest)
+	{
+		return this.categoriaRepository.listByFiltersDesativada(nome, pageRequest);
 	}
 	
 	
@@ -97,19 +102,18 @@ public class CategoriaService implements ICategoriaResource{
 	//removeCategoria(long):void
 	public void removeCategoria(Long id) {
 		Assert.notNull(id, "Não encontrou ID para remover");
-		if (!registroResource.verificaCategoriaAssociada(id)) {
-			Categoria categoria = this.categoriaRepository.findOne(id);
-			this.categoriaRepository.delete(categoria);
-		} 
-		//Assert.isTrue(!registroResource.verificaCategoriaAssociada(id), "Categoria associada a um registro, impossivel de remover!");
-//		if (registroResource.verificaCategoriaAssociada(id)) {
-//			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ENTROU NO IF");
-//		}
+		Categoria categoria = this.findCategoriaById(id);
 		
+		//this.registroResource.verificaCategoriaAssociada(id);
+		Assert.isTrue(this.registroResource.verificaCategoriaAssociada(id), "Não pode deletar, categoria associada à um ou mais registros");
+		this.categoriaRepository.delete(categoria);
+//		if (!registroResource.verificaCategoriaAssociada(id)) {
+//			Categoria categoria = this.categoriaRepository.findOne(id);
+//			this.categoriaRepository.delete(categoria);
+//		} 
+
 		
 	}
-	
-	
 	
 	//updateCategoria(Categoria):Categoria	
 	public Categoria updateCategoria( Categoria categoria )
@@ -130,18 +134,11 @@ public class CategoriaService implements ICategoriaResource{
 	}
 	
 	
-//	//updateCategoriaToDesativada(Categoria):Categoria
-//	public Categoria updateCategoriaToDesativada (Categoria categoria) {
-//		Assert.notNull( categoria.getId(), this.messageSource.getMessage( "categoria.null", null, LocaleContextHolder.getLocale() ) );
-//		categoria.setDesativada(true);
-//		return this.categoriaRepository.save(categoria);
-//	}
-	
 	public Categoria updateCategoriaToDesativada (Long id) {
 		Assert.notNull( id , this.messageSource.getMessage( "categoria.null", null, LocaleContextHolder.getLocale() ) );
 		Categoria categoriaSaved = categoriaRepository.findOne(id);
-		Assert.isTrue(!categoriaSaved.getDesativada(),"a categoria já esta desativada");
-		categoriaSaved.setDesativada(true);
+		//Assert.isTrue(!categoriaSaved.getDesativada(),"a categoria já esta desativada");
+		categoriaSaved.setDesativada(!categoriaSaved.getDesativada());
 		
 		return this.categoriaRepository.save(categoriaSaved);
 	}
@@ -161,12 +158,7 @@ public class CategoriaService implements ICategoriaResource{
 		Assert.isTrue(categoriaSaved.getDesativada(),"a categoria já esta ativada");
 		categoriaSaved.setDesativada(false);
 		return this.categoriaRepository.save(categoriaSaved);
-	}
-
-
-
-
-	
+	}	
 	
 	
 }

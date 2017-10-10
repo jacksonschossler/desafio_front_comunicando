@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 //import org.springframework.util.Assert;
 import org.junit.Assert;
 
+import br.com.agenda.categoria.application.restful.ICategoriaResource;
+import br.com.agenda.categoria.domain.entity.Categoria;
 import br.com.agenda.common.application.i18n.MessageSourceHolder;
 import br.com.agenda.registro.application.restful.IRegistroResource;
 import br.com.agenda.registro.domain.entity.Registro;
@@ -21,6 +23,8 @@ import br.com.agenda.registro.domain.repository.IRegistroRepository;
 @Transactional
 public class RegistroService implements IRegistroResource {
 
+	@Autowired
+	private ICategoriaResource categoriaResource;
 	
 	@Autowired
 	private IRegistroRepository registroRepository;
@@ -47,11 +51,28 @@ public class RegistroService implements IRegistroResource {
 	}
 
 	
+	
+	
+	public Page<Categoria> listCategoriaByFiltersDesativada(String nome, PageRequest pageRequest){
+		Page<Categoria> cat = this.categoriaResource.listCategoriaByFiltersDesativada(nome, pageRequest);
+		return cat;
+		}
+	
+	
+	
+
+	
+	
 
 	@Override
 	public Page<Registro> listRegistroById(Integer mes, Integer ano, Long categoria, PageRequest pageRequest) {
 		// TODO Auto-generated method stub
-		return this.registroRepository.listByFilters(mes, ano,  categoria, pageRequest);
+		//final Categoria categoriaSet = this.categoriaResource.findCategoriaById(categoria);
+		Page<Registro> registros = this.registroRepository.listByFilters(mes, ano,  categoria, pageRequest);
+		for (Registro registro: registros.getContent()) {
+			registro.setCategoria(this.categoriaResource.findCategoriaById(registro.getCategoria().getId()));
+		}
+		return registros;
 	}
 
 	@Override
@@ -83,20 +104,22 @@ public class RegistroService implements IRegistroResource {
 	}
 	
 	
+//	public Categoria findCategoriaByIdRegistro (Long id) {
+//		//return categoriaResource.findCategoriaById(id);
+//		Categoria categoria = categoriaResource.findCategoriaById(id);
+//		return categoria;
+//	}
 	
 	public Boolean verificaCategoriaAssociada(Long id) {
 		
 		Boolean verifica = true;
-//		final Page<Registro> pageRegistro = registroRepository.listByFilters(null, null, null, null);
 		final Page<Registro> pageRegistro = registroRepository.listByFilters(null,null,id,null);
-		
-		if (pageRegistro.getTotalElements() == 0 ) {
-			verifica = false;
-		}
-		//Assert.assertEquals(0, pageRegistro.getTotalElements());
-		//Assert.notNull(registroRepository.listByFilters(null, null, id, null), "NENHUMA CATEGORIA ASSOCIADA AO REGISTRO!");
-		
-		//registroRepository.
+
+		Assert.assertTrue("Não pode deletar, categoria associada à um ou mais registros",pageRegistro.getTotalElements()==0);
+
+		verifica = false;
+
+
 		return verifica;
 	}
 

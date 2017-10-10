@@ -30,8 +30,7 @@ import br.com.agenda.categoria.domain.entity.Tipo;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public interface ICategoriaResource {
-	
-	
+
 	@GET
 	@Path("/{id}")
 	public Categoria findCategoriaById( @PathParam("id") Long id);
@@ -57,11 +56,19 @@ public interface ICategoriaResource {
 													PageRequest pageRequest			
 													);
 	
+	@GET
+	@Path("/listCategoriaByFiltersDesativada/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Page<Categoria> listCategoriaByFiltersDesativada(@QueryParam("nome") String nome,
+															@QueryParam("pageRequest")PageRequest pageRequest			
+													);
+	
 	
 	@DELETE
 	@Path("/id")
 	public void removeCategoria( @PathParam("id") Long id);
 	
+
 	@POST
 	@Path("/update")
 	@Consumes(MediaType.APPLICATION_JSON)

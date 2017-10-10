@@ -15,8 +15,7 @@ import br.com.agenda.registro.application.restful.IRegistroResource;
  * @author rodrigo.p.fraga
  */
 @EnableFeignClients(clients= {
-		IRegistroResource.class
-})
+		IRegistroResource.class})
 @EnableDiscoveryClient
 @EntityScan(basePackageClasses = {
 	IEntity.class,
@@ -26,7 +25,6 @@ import br.com.agenda.registro.application.restful.IRegistroResource;
 	CommonConfiguration.class,
 	Application.class
 })
-
 public class Application
 {
 	/**

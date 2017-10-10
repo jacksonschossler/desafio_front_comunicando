@@ -1,0 +1,86 @@
+<form #myForm="ngForm" class="registro-form" [formGroup]="formulario" flex="100">
+
+  <div layout-align="center center" layout-gt-xs="row" layout-margin>
+    <md-card flex="70">
+      <div flex>
+        <h2 style="text-align : center ; color: #6E6E6E;">
+          <!-- <a *ngIf="!categoria.id">Cadastrar Categoria</a>
+                <a *ngIf="categoria.id">Editar Categoria</a> -->
+          <a>Cadastrar Registro</a>
+        </h2>
+      </div>
+
+      <div style="min-height: px;">
+        <md-select style="min-width: 150px" class="push" placeholder="Tipo contábil" formControlName="tipoForm" [(ngModel)]="registro.tipo">
+          <md-option *ngFor="let tipo of tipos" [value]="tipo.value">
+            {{ tipo.viewValue }}
+          </md-option>
+
+        </md-select>
+      </div>
+
+      <div flex>
+        <md-input-container class="push">
+          <md-form-field>
+            <input style="min-width: 800px" type="text" placeholder="Categoria" mdInput [(ngModel)]="registro.categoria" formControlName="categoriaForm"
+              [mdAutocomplete]="auto">
+            <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayCategoria">
+              <md-option *ngFor="let categoria  of categorias" [value]="categoria">
+                {{ categoria.nome }}
+              </md-option>
+            </md-autocomplete>
+          </md-form-field>
+          <md-error>
+            Categoria é necessário
+          </md-error>
+        </md-input-container>
+      </div>
+
+      <div layout="row">
+        <md-input-container class="push" flex="10">
+          <input style="min-width: 100px" mdInput [mdDatepicker]="data" placeholder="Data*" formControlName="dataForm" [(ngModel)]="registro.data">
+          <button mdSuffix [mdDatepickerToggle]="data"></button>
+          <md-datepicker #data></md-datepicker>
+          <md-error>
+            Data é <strong>necessária</strong>
+          </md-error>
+        </md-input-container>
+
+        <span flex="10"></span>
+
+        <md-input-container class="push" flex="15">
+          <md-form-field>
+            <input style="min-width: 1000px" type="number" mdInput placeholder="Valor"
+             formControlName="valorForm" [(ngModel)]="registro.valor">
+          </md-form-field>
+          <md-error>
+            Valor é necessário
+          </md-error>
+        </md-input-container>
+      </div>
+
+      <div style="min-width: 80%;" class="push">
+        <md-input-container>
+          <md-form-field>
+            <input style="min-width: 1000px" mdInput #message maxlength="255" placeholder="Descrição" formControlName="descricaoForm"
+              [(ngModel)]="registro.descricao">
+          </md-form-field>
+          <md-hint align="start">Digite uma descrição para o Registro</md-hint>
+          <md-hint align="end">{{message.value.length}} / 255</md-hint>
+          <md-error>Este Campo é obrigatório</md-error>
+        </md-input-container>
+      </div>
+
+      <div style="min-height: 50px;">
+      </div>
+
+      <div flex="85" layout-align="end" layout-gt-xs="row" layout-margin>
+        <button md-raised-button color="warn" (click)="insertRegistro(registro)">Salvar</button>
+      </div>
+
+      <div style="min-height: 10px;">
+      </div>
+
+    </md-card>
+  </div>
+</form>
