@@ -81,9 +81,14 @@ public class CategoriaService implements ICategoriaResource{
 		
 	}
 	
+	
 	@Override
 	public Page<Categoria>listCategoriaByFiltersDesativada(String nome, PageRequest pageRequest)
 	{
+//		Page<Categoria> categorias = this.categoriaRepository.listByFiltersDesativada(nome, pageRequest);
+//		for (Categoria categoria: categorias.getContent()) {
+//			categoria.set
+//		}
 		return this.categoriaRepository.listByFiltersDesativada(nome, pageRequest);
 	}
 	

@@ -51,8 +51,20 @@ export class RegistroFormComponent implements OnInit{
 
     ngOnInit(): void {
         this.listCategoriaByFiltersDesativada(null,null);
+        let registroId: number = this.activatedRoute.snapshot.params['id'];
+        if(registroId){
+          this.findRegistroById(registroId);
+        };
     }
     
+    public findRegistroById = function(registroId){
+      Broker.of("registroService").promise("findRegistroById", registroId)
+      .then((result)=> {
+        this.registro = result;
+      })
+
+    }
+
     public listCategoriaByFiltersDesativada = function (nome, pageable)
     {
         Broker.of("registroService").promise("listCategoriaByFiltersDesativada", nome, pageable)
@@ -60,8 +72,22 @@ export class RegistroFormComponent implements OnInit{
             this.categorias = result.content;
         })
         .catch((exception)=> {
-            console.log(exception.message);
+          this.openAlert(exception.message);
         })
+    }
+
+
+    public updateRegistro(registro): void{
+      if (this.formulario.valid){
+        Broker.of("registroService").promise("updateRegistro", registro)
+        .then((registro)=>{
+          this.openAlert("Editado com sucesso!");
+          this.router.navigate(["./registro/list"]);
+        })
+        .catch((exception)=>{
+          this.openAlert(exception.message);
+        })
+      }
     }
 
     public insertRegistro(registro): void{
@@ -76,6 +102,8 @@ export class RegistroFormComponent implements OnInit{
         })
       }
     }
+
+    
 
 
     openAlert(mensagem: String): void{

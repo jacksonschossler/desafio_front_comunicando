@@ -47,6 +47,8 @@ public class RegistroService implements IRegistroResource {
 	public Registro findRegistroById(Long id) {
 		final Registro registro = this.registroRepository.findOne(id);
 		Assert.assertNotNull(MessageSourceHolder.getMessage("repository.notFoundById", id),registro );
+		registro.setCategoria(this.categoriaResource.findCategoriaById(registro.getCategoria().getId()));
+
 		return registro;
 	}
 

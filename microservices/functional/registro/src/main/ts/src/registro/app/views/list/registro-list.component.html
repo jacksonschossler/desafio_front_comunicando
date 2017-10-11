@@ -65,17 +65,12 @@
         <div flex>
 
 
-          <a md-icon-button mdTooltip="Ativar/Desativar">
-            <md-icon>block</md-icon>
-          </a>
-
-
-          <a md-icon-button mdTooltip="Editar">
+          <a md-icon-button mdTooltip="Editar" [routerLink]="['../edit',registro.id]">
             <md-icon>edit</md-icon>
           </a>
 
 
-          <a md-icon-button mdTooltip="Excluir">
+          <a md-icon-button mdTooltip="Excluir"  (click)="removeRegistro(registro.id)">
             <md-icon>delete</md-icon>
           </a>
         </div>
