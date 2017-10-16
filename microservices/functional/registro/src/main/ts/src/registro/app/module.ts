@@ -7,6 +7,7 @@ import { RegistroChartComponent } from './views/chart/registro-chart.component';
 
 //===============================ANGULAR MODULES=================================
 import { BrowserModule } from '@angular/platform-browser';
+import { ChartsModule } from 'ng2-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
@@ -122,6 +123,7 @@ export function HttpLoaderFactory(http: Http) {
     MdButtonToggleModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

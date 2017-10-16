@@ -1,1 +1,98 @@
-<h1>CHART REGISTRO CHART REGISTRO CHART REGISTRO CHART REGISTRO CHART REGISTRO </h1>
+<md-card>
+  <div>
+    <h2 style="text-align : center ; color: #6E6E6E;">Gráfico de Registros</h2>
+  </div>
+
+  <md-divider></md-divider>
+
+  <div layout="row" flex>
+    <md-card style="min-height: 50px; min-width:96%">
+
+
+      <div layout="row">
+
+
+        <md-input-panel flex="10" class="push" style="padding-top : 15px">
+          <md-select placeholder="Mês" [(ngModel)]="filtro.mes">
+            <md-option *ngFor="let mes of meses" [value]="mes.value">
+              {{ mes.viewValue }}
+            </md-option>
+          </md-select>
+        </md-input-panel>
+
+        <md-input-container flex="15" class="push">
+          <input mdInput maxlength="4" placeholder="Ano" [(ngModel)]="filtro.ano">
+        </md-input-container>
+
+        <button md-raised-button class="push" style="height: 36px " color="warn" (click)="filtrar(filtro)">Gerar Gráfico</button>
+
+
+      </div>
+
+    </md-card>
+  </div>
+
+<md-card>
+
+
+  <div style="min-height: 400px" flex layout="row">
+    <div flex  *ngIf="(registrosValorTipo.length)">
+      <div style="text-align:center ; color: #6E6E6E">Gráfico por despesa/receita</div>
+        <canvas baseChart
+                [data]="registrosValorTipo"
+                [labels]="registrosNomeTipo"
+                [chartType]="pieChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+    </div>
+
+
+  <div flex  *ngIf="(registrosValorReceita.length)">
+    <div style="text-align:center ;color: #6E6E6E">Gráfico somente receitas</div>
+      <canvas baseChart
+              [data]="registrosValorReceita"
+              [labels]="registrosNomeReceita"
+              [chartType]="pieChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+  </div>
+
+  <div flex  *ngIf="(registrosValorDespesa.length)">
+      <div style="text-align:center ;color: #6E6E6E">Gráfico somente despesas</div>
+        <canvas baseChart
+                [data]="registrosValorDespesa"
+                [labels]="registrosNomeDespesa"
+                [chartType]="pieChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+    </div>
+
+</div>
+</md-card>
+
+<span ></span>
+
+<div *ngFor="let registro of registros">
+  <md-expansion-panel>
+    <md-expansion-panel-header>
+      <md-panel-title class="zebra">
+
+        <div flex="15"> {{registro.tipo}}</div>
+        <div flex="25">{{registro.categoria.nome }}</div>
+        <div flex="15"> {{registro?.data | date: "dd/MM/yyyy" }}</div>
+        <div flex="35" style=" text-align: right">{{registro.valor | number:".2-2"}}</div>
+        <div flex="10"></div>
+
+      </md-panel-title>
+
+    </md-expansion-panel-header>
+
+    <div layout="row">
+
+      <span flex="85" style="color: #6E6E6E">
+        Descrição: {{registro.descricao}}
+      </span>
+  
+    </div>
+  </md-expansion-panel>
+</div>
