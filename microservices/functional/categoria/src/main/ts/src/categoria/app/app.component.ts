@@ -8,11 +8,7 @@ import { Component, Inject } from "@angular/core";
 export class AppComponent {
 
   menus: Object[] = [{
-    icon: 'home',
-    route: './categoria',
-    title: 'Início',
-  },
-  {
+  
     icon: 'add',
      route: './categoria/form',
     title: 'Criar nova categoria',

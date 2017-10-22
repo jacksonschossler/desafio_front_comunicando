@@ -23,109 +23,149 @@ import br.com.agenda.registro.domain.repository.IRegistroRepository;
 @Transactional
 public class RegistroService implements IRegistroResource {
 
+	/**
+	 * Resource de Categoria
+	 */
 	@Autowired
 	private ICategoriaResource categoriaResource;
-	
+
+	/**
+	 * Repositorio de Registro
+	 */
 	@Autowired
 	private IRegistroRepository registroRepository;
-	
+
+	/**
+	 * messageSource
+	 */
 	@Autowired
 	private MessageSource messageSource;
-	
+
+	/**
+	 * Serviço para inserir um Registro
+	 * 
+	 * @param registro
+	 *            return registro
+	 */
 	@Override
 	public Registro insertRegistro(Registro registro) {
-		Assert.assertNotNull(this.messageSource.getMessage("registro.null",null,LocaleContextHolder.getLocale()), registro );
-//		if (verificaCategoriaAssociada(19L)) {
-//			registro = this.registroRepository.save(registro);
-//		}
+		Assert.assertNotNull(this.messageSource.getMessage("registro.null", null, LocaleContextHolder.getLocale()),
+				registro);
 		registro = this.registroRepository.save(registro);
 		return registro;
 	}
-	
+
+	/**
+	 * Serviço para buscar um registro
+	 * 
+	 * @param id
+	 *            return registro
+	 */
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Registro findRegistroById(Long id) {
 		final Registro registro = this.registroRepository.findOne(id);
-		Assert.assertNotNull(MessageSourceHolder.getMessage("repository.notFoundById", id),registro );
+		Assert.assertNotNull(MessageSourceHolder.getMessage("repository.notFoundById", id), registro);
 		registro.setCategoria(this.categoriaResource.findCategoriaById(registro.getCategoria().getId()));
 
 		return registro;
 	}
 
-	
-	
-	
-	public Page<Categoria> listCategoriaByFiltersDesativada(String nome, PageRequest pageRequest){
+	/**
+	 * Serviço para retornar Categorias desativadas
+	 * 
+	 * @param nome
+	 * @param pageRequest
+	 * @return categorias
+	 */
+	public Page<Categoria> listCategoriaByFiltersDesativada(String nome, PageRequest pageRequest) {
 		Page<Categoria> cat = this.categoriaResource.listCategoriaByFiltersDesativada(nome, pageRequest);
 		return cat;
-		}
-	
-	
-	
+	}
 
-	
-	
-
+	/**
+	 * Serviço para retornar uma lista de registros
+	 * 
+	 * @param mes
+	 * @param ano
+	 * @param categoria
+	 * @param pageRequest
+	 *            return registros
+	 */
 	@Override
 	public Page<Registro> listRegistroById(Integer mes, Integer ano, Long categoria, PageRequest pageRequest) {
 		// TODO Auto-generated method stub
-		//final Categoria categoriaSet = this.categoriaResource.findCategoriaById(categoria);
-		Page<Registro> registros = this.registroRepository.listByFilters(mes, ano,  categoria, pageRequest);
-		for (Registro registro: registros.getContent()) {
+		// final Categoria categoriaSet =
+		// this.categoriaResource.findCategoriaById(categoria);
+		Page<Registro> registros = this.registroRepository.listByFilters(mes, ano, categoria, pageRequest);
+		for (Registro registro : registros.getContent()) {
 			registro.setCategoria(this.categoriaResource.findCategoriaById(registro.getCategoria().getId()));
 		}
 		return registros;
 	}
 
+	/**
+	 * Serviço para remover um registro
+	 * 
+	 * @param id
+	 *            return void
+	 */
 	@Override
 	public void removeRegistro(Long id) {
 		Assert.assertNotNull("ID DO REGISTRO NÃO ENCONTRADO", id);
 		Registro registro = this.registroRepository.findOne(id);
-		
+
 		this.registroRepository.delete(registro);
-		
 	}
 
+	/**
+	 * Serviço para atualziar um registro
+	 * 
+	 * @param registro
+	 *            return registro
+	 */
 	@Override
 	public Registro updateRegistro(Registro registro) {
-		Assert.assertNotNull( this.messageSource.getMessage( "registroId.null", null, LocaleContextHolder.getLocale() ),registro.getId() );
-		Assert.assertNotNull( this.messageSource.getMessage( "registro.tipoNull", null, LocaleContextHolder.getLocale() ) , registro.getTipo());
-		Assert.assertNotNull(  this.messageSource.getMessage( "registro.categoriaNull", null, LocaleContextHolder.getLocale() ) ,registro.getCategoria());
-		Assert.assertNotNull( this.messageSource.getMessage( "registro.dataNull", null, LocaleContextHolder.getLocale() ),registro.getData() );
-		Assert.assertNotNull(this.messageSource.getMessage( "registro.valorNull", null, LocaleContextHolder.getLocale() ) , registro.getValor());
+		Assert.assertNotNull(this.messageSource.getMessage("registroId.null", null, LocaleContextHolder.getLocale()),
+				registro.getId());
+		Assert.assertNotNull(this.messageSource.getMessage("registro.tipoNull", null, LocaleContextHolder.getLocale()),
+				registro.getTipo());
+		Assert.assertNotNull(
+				this.messageSource.getMessage("registro.categoriaNull", null, LocaleContextHolder.getLocale()),
+				registro.getCategoria());
+		Assert.assertNotNull(this.messageSource.getMessage("registro.dataNull", null, LocaleContextHolder.getLocale()),
+				registro.getData());
+		Assert.assertNotNull(this.messageSource.getMessage("registro.valorNull", null, LocaleContextHolder.getLocale()),
+				registro.getValor());
 
 		Registro registroSaved = this.registroRepository.findOne(registro.getId());
-		
+
 		registroSaved.setTipo(registro.getTipo());
 		registroSaved.setCategoria(registro.getCategoria());
 		registroSaved.setData(registro.getData());
 		registroSaved.setValor(registro.getValor());
 		registroSaved.setDescricao(registro.getDescricao());
-		
+
 		return this.registroRepository.save(registroSaved);
 	}
-	
-	
-//	public Categoria findCategoriaByIdRegistro (Long id) {
-//		//return categoriaResource.findCategoriaById(id);
-//		Categoria categoria = categoriaResource.findCategoriaById(id);
-//		return categoria;
-//	}
-	
+
+	/**
+	 * Serviço para verificar se existe algum registro associado com a categoria
+	 * buscada
+	 * 
+	 * @param id
+	 *            return boolean
+	 */
 	public Boolean verificaCategoriaAssociada(Long id) {
-		
+
 		Boolean verifica = true;
-		final Page<Registro> pageRegistro = registroRepository.listByFilters(null,null,id,null);
+		final Page<Registro> pageRegistro = registroRepository.listByFilters(null, null, id, null);
 
-		Assert.assertTrue("Não pode deletar, categoria associada à um ou mais registros",pageRegistro.getTotalElements()==0);
-
+		Assert.assertTrue("Não pode deletar, categoria associada à um ou mais registros",
+				pageRegistro.getTotalElements() == 0);
 		verifica = false;
-
 
 		return verifica;
 	}
-
-
-
 
 }

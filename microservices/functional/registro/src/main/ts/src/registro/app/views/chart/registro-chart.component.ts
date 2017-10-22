@@ -124,7 +124,7 @@ export class RegistroChartComponent implements OnInit{
           message: (""+ mensagem)
       
       });
-  
   }
+  
 
 }

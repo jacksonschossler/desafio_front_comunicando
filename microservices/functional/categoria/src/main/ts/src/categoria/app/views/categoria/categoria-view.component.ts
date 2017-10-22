@@ -2,7 +2,7 @@ import { Broker } from 'eits-ng2';
 import { Component, HostBinding, AfterViewInit, OnInit, Input, Output, EventEmitter, ViewContainerRef } from '@angular/core';
 import { TdMediaService, TdDialogService } from '@covalent/core';
 import { NgModel } from '@angular/forms'
-import { MdDialog } from '@angular/material';
+import { MdDialog, MdSnackBar } from '@angular/material';
 import { RemoveConfirmComponent } from './../../controls/remove-confirm.component';
 
 
@@ -29,7 +29,7 @@ export class CategoriaViewComponent implements OnInit{
   onRemoveCategoria: EventEmitter<any> = new EventEmitter;
 
   constructor(public dialog: MdDialog, private _dialogService: TdDialogService,
-              private _viewContainerRef: ViewContainerRef){
+              private _viewContainerRef: ViewContainerRef, public snackBar: MdSnackBar){
     
       }
 
@@ -79,7 +79,8 @@ export class CategoriaViewComponent implements OnInit{
         if (accept) {
           Broker.of("categoriaService").promise("updateCategoriaToDesativada", id)
           .then((result) => {
-              this.openAlert("Categoria alterada sucesso!");
+              //this.openAlert("Categoria alterada sucesso!");
+              this.openSnackBar("Categoria alterada com sucesso!")
               this.listCategoriaByFiltersFull(null,null,null,null);
           })
           .catch((exception) =>{
@@ -101,7 +102,8 @@ export class CategoriaViewComponent implements OnInit{
         if (accept) {
           Broker.of("categoriaService").promise("removeCategoria", id)
           .then((result) => {
-              this.openAlert("Categoria deletada com sucesso!");
+              //this.openAlert("Categoria deletada com sucesso!");
+              this.openSnackBar("Categoria deletada com sucesso!")
               this.listCategoriaByFiltersFull(null,null,null,null);
           })
           .catch((exception) =>{
@@ -120,8 +122,14 @@ export class CategoriaViewComponent implements OnInit{
         message: (""+ mensagem)
     
     });
-
   }
+
+  openSnackBar(messagem: string) {
+    this.snackBar.open(messagem, "Ok", {
+        duration: 5000,
+    });
+  }
+
 
   openConfirm():void{
     this._dialogService.openConfirm({
@@ -130,7 +138,8 @@ export class CategoriaViewComponent implements OnInit{
       acceptButton: 'Sim'
     }).afterClosed().subscribe((accept: boolean)=>{
       if (accept) {
-        this.openAlert("deletada com sucesso!");
+        //this.openAlert("deletada com sucesso!");
+        this.openSnackBar("Categoria deletada com sucesso!");
       } else{
         
       }

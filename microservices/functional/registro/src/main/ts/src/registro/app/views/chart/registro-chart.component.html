@@ -1,12 +1,14 @@
-<md-card>
+
+<div layout-align="center center" layout-margin>
+
   <div>
     <h2 style="text-align : center ; color: #6E6E6E;">Gráfico de Registros</h2>
   </div>
-
+<md-card>
   <md-divider></md-divider>
 
   <div layout="row" flex>
-    <md-card style="min-height: 50px; min-width:96%">
+    <md-card style="min-height: 50px; min-width:99%">
 
 
       <div layout="row">
@@ -32,7 +34,7 @@
     </md-card>
   </div>
 
-<md-card>
+<md-card  style="min-width:97%">
 
 
   <div style="min-height: 400px" flex layout="row">
@@ -70,29 +72,6 @@
 </div>
 </md-card>
 
-<span ></span>
+</md-card>
 
-<div *ngFor="let registro of registros">
-  <md-expansion-panel>
-    <md-expansion-panel-header>
-      <md-panel-title class="zebra">
-
-        <div flex="15"> {{registro.tipo}}</div>
-        <div flex="25">{{registro.categoria.nome }}</div>
-        <div flex="15"> {{registro?.data | date: "dd/MM/yyyy" }}</div>
-        <div flex="35" style=" text-align: right">{{registro.valor | number:".2-2"}}</div>
-        <div flex="10"></div>
-
-      </md-panel-title>
-
-    </md-expansion-panel-header>
-
-    <div layout="row">
-
-      <span flex="85" style="color: #6E6E6E">
-        Descrição: {{registro.descricao}}
-      </span>
-  
-    </div>
-  </md-expansion-panel>
 </div>

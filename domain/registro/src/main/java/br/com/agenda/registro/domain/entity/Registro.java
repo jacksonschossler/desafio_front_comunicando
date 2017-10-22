@@ -39,7 +39,7 @@ public class Registro extends AbstractEntity implements Serializable{
 	 *-------------------------------------------------------------------*/
 	
 	@Column(nullable=false)
-	private float valor;
+	private Float valor;
 	
 	@Column(nullable=false)
 	private LocalDateTime data; 
@@ -47,15 +47,19 @@ public class Registro extends AbstractEntity implements Serializable{
 	@Column(nullable=true)
 	private String descricao;
 	
+	/**
+	 * Categoria de registro
+	 */
 	@Type(type="transientEntity",parameters=@Parameter(name="entity",value="br.com.agenda.categoria.domain.entity.Categoria"))
 	@Column
 	private Categoria categoria;
 	
-	//@Type(type="transientEntity",parameters=@Parameter(name="entity",value="br.com.agenda.categoria.domain.entity.Tipo"))
+	/**
+	 * Tipo(despesa,receita)
+	 */
 	@Column
 	@Enumerated(EnumType.ORDINAL)
 	private Tipo tipo;
-	
 	
 	
 	

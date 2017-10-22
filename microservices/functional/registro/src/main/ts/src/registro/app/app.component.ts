@@ -8,11 +8,8 @@ import { Component, Inject } from "@angular/core";
 export class AppComponent {
 
     menus: Object[] = [{
-        icon: 'home',
-        route: './registro',
-        title: 'Início',
-      },
-      {
+     
+      
         icon: 'add',
          route: './registro/form',
         title: 'Criar novo registro',

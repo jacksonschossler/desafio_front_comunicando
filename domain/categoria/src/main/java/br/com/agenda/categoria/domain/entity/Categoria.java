@@ -41,8 +41,8 @@ public class Categoria extends AbstractEntity implements Serializable
 	 */
 	
 	@NotNull(message = "Informe um nome para categoria")
-	@Length(max=50)
-	@Column(nullable = false, length = 50, unique=true)
+	@Length(max=144)
+	@Column(nullable = false, length = 144, unique=true)
 	private String nome;
 	
 	@Column(nullable = true)
@@ -54,7 +54,7 @@ public class Categoria extends AbstractEntity implements Serializable
 	@Column(nullable = false)
 	private Tipo tipo;
 	
-	@Column
+	@Column(nullable = false)
 	private Boolean desativada;
 	
 	

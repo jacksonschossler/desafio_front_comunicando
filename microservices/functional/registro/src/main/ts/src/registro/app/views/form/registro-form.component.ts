@@ -2,7 +2,7 @@ import { Broker } from 'eits-ng2';
 import { Http } from '@angular/http';
 import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { NgModel, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
-import { MdDialog } from '@angular/material';
+import { MdDialog, MdSnackBar } from '@angular/material';
 import { TdDialogService, TdMediaService } from '@covalent/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -35,7 +35,7 @@ export class RegistroFormComponent implements OnInit{
     constructor(private _dialogService: TdDialogService,
         private _viewContainerRef: ViewContainerRef,
         public router: Router, public formBuilder: FormBuilder, 
-        public activatedRoute: ActivatedRoute)
+        public activatedRoute: ActivatedRoute, public snackBar: MdSnackBar)
         {
 
             this.formulario = formBuilder.group({
@@ -81,7 +81,8 @@ export class RegistroFormComponent implements OnInit{
       if (this.formulario.valid){
         Broker.of("registroService").promise("updateRegistro", registro)
         .then((registro)=>{
-          this.openAlert("Editado com sucesso!");
+          //this.openAlert("Editado com sucesso!");
+          this.openSnackBar("Registro editado com sucesso!");
           this.router.navigate(["./registro/list"]);
         })
         .catch((exception)=>{
@@ -94,7 +95,8 @@ export class RegistroFormComponent implements OnInit{
       if (this.formulario.valid){
         Broker.of("registroService").promise("insertRegistro", registro)
         .then((registro)=>{
-          this.openAlert("Salvo com sucesso!");
+          //this.openAlert("Salvo com sucesso!");
+          this.openSnackBar("Registro salvo com sucesso!")
           this.router.navigate(["./registro/list"]);
         })
         .catch((exception)=>{
@@ -112,7 +114,12 @@ export class RegistroFormComponent implements OnInit{
           message: (""+ mensagem)
       
       });
+  }
 
+  openSnackBar(messagem: string) {
+    this.snackBar.open(messagem, "Ok", {
+        duration: 5000,
+    });
   }
 
     displayCategoria(categoria): String {

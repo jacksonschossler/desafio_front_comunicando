@@ -1,6 +1,6 @@
 <td-layout>
 
-    <td-navigation-drawer flex sidenavTitle="Controle financeiro" name="Jackson Luis Schossler">
+    <td-navigation-drawer flex sidenavTitle="Controle financeiro" name="Admin">
         <md-nav-list>
             <a md-list-item *ngFor="let item of menus" [routerLink]="item.route">
                 <md-icon>{{item.icon}}</md-icon>{{item.title}}
@@ -10,7 +10,7 @@
     </td-navigation-drawer>
 
 
-    <td-layout-nav style="background-color:#DDDDDD" layout-fill toolbarTitle="Controle dee Registros Financeiros">
+    <td-layout-nav style="background-color:#DDDDDD" layout-fill toolbarTitle="Controle de Registros Financeiros">
 
         <router-outlet></router-outlet>
         <!-- Aqui é meu content -->

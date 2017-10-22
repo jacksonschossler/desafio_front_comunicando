@@ -5,13 +5,11 @@
 
   <md-divider></md-divider>
 
-  <div layout="row" flex>
-    <md-card style="min-height: 50px; min-width:99%">
+  <div layout="row" >
+    <md-card style=" min-width:99%">
 
 
-      <div layout="row">
-
-
+      <div  >
         <md-input-panel flex="10" class="push" style="padding-top : 15px">
           <md-select placeholder="Mês" [(ngModel)]="filtro.mes">
             <md-option *ngFor="let mes of meses" [value]="mes.value">
@@ -25,13 +23,15 @@
         </md-input-container>
 
         <button md-raised-button class="push" style="height: 36px " color="warn" (click)="filtrar(filtro)">Filtrar</button>
-
-
-      </div>
+          <div style="text-align: end">
+          <a class="push" style="text-align: left" [routerLink]="['../form']" color="warn" md-icon-button mdTooltip="Novo Registro">
+              <md-icon style="font-size: 60px">add_box</md-icon>
+             
+          </a>
+        </div>
+      </div>   
 
     </md-card>
-
-
   </div>
 
 
@@ -79,16 +79,6 @@
     </md-expansion-panel>
   </div>
 
-  <md-input-container>
-    <md-form-field>
-      <input type="text" placeholder="aeeee" mdInput [(ngModel)]="registro.categoria" [mdAutocomplete]="auto">
-      <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayCategoria">
-        <md-option *ngFor="let registro  of registros" [value]="registro">
-          {{ registro.categoria.nome }}
-        </md-option>
-      </md-autocomplete>
-    </md-form-field>
-  </md-input-container>
 
 
 </md-card>

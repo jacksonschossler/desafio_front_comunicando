@@ -4,6 +4,7 @@ import { Component, OnInit,ViewContainerRef  } from '@angular/core';
 import { TdMediaService,TdDialogService   } from '@covalent/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MdSnackBar } from '@angular/material';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class CategoriaFormComponent implements OnInit {
 
     constructor(private _dialogService: TdDialogService,
         private _viewContainerRef: ViewContainerRef,
-        public router: Router, public formBuilder: FormBuilder, public activatedRoute: ActivatedRoute)
+        public router: Router, public formBuilder: FormBuilder,
+        public activatedRoute: ActivatedRoute, public snackBar: MdSnackBar)
         {
             this.formulario = formBuilder.group({
                 tipoForm: ['', Validators.required],
@@ -57,7 +59,8 @@ export class CategoriaFormComponent implements OnInit {
         if (this.formulario.valid){
             Broker.of("categoriaService").promise("insertCategoria", categoria)
             .then((categoria) => {
-                this.openAlert("salva com sucesso!");
+                //this.openAlert("salva com sucesso!");
+                this.openSnackBar("Categoria salva com sucesso!");
                 this.router.navigate(["./categoria/list"]);
             })
             .catch((exception) => {
@@ -70,7 +73,8 @@ export class CategoriaFormComponent implements OnInit {
         if (this.formulario.valid){
             Broker.of("categoriaService").promise("updateCategoria", categoria)
             .then((categoria) =>{
-                this.openAlert("editada com sucesso!");
+                //this.openAlert("editada com sucesso!");
+                this.openSnackBar("Categoria editada com sucesso!");
                 this.router.navigate(["./categoria/list"]);
 
             })
@@ -98,8 +102,12 @@ export class CategoriaFormComponent implements OnInit {
             message: (""+ mensagem)
         
         });
-
     }
+    openSnackBar(messagem: string) {
+      this.snackBar.open(messagem, "Ok", {
+          duration: 5000,
+      });
+  }
 
 
     displayTipo(tipo): String {

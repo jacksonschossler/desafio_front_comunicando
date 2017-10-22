@@ -1,7 +1,7 @@
 import { Broker } from 'eits-ng2';
 import { Component, OnInit, Input, Output, ViewContainerRef } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
-import { MdDialog } from '@angular/material';
+import { MdDialog, MdSnackBar } from '@angular/material';
 import { TdDialogService } from '@covalent/core';
 
 
@@ -42,7 +42,7 @@ export class RegistroListComponent implements OnInit {
   ];
 
   constructor(public dialog: MdDialog, private _dialogService: TdDialogService,
-    private _viewContainerRef: ViewContainerRef) {
+    private _viewContainerRef: ViewContainerRef, public snackBar: MdSnackBar) {
 
   }
 
@@ -84,7 +84,8 @@ export class RegistroListComponent implements OnInit {
       if (accept) {
         Broker.of("registroService").promise("removeRegistro", id)
           .then((result) => {
-            this.openAlert('Registro removido com sucesso!');
+            //this.openAlert('Registro removido com sucesso!');
+            this.openSnackBar("Registro removido com sucesso!");
             this.listRegistroById(null, null);
           })
           .catch((exception) => {
@@ -104,7 +105,11 @@ export class RegistroListComponent implements OnInit {
         message: (""+ mensagem)
     
     });
-
+}
+openSnackBar(messagem: string) {
+  this.snackBar.open(messagem, "Ok", {
+      duration: 5000,
+  });
 }
 
   displayCategoria(categoria): String {
