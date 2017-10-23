@@ -2,7 +2,7 @@ import { Broker } from 'eits-ng2';
 import { Component, OnInit, Input, Output, ViewContainerRef } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { MdDialog, MdSnackBar } from '@angular/material';
-import { TdDialogService } from '@covalent/core';
+import { TdDialogService, IPageChangeEvent } from '@covalent/core';
 
 
 @Component({
@@ -19,6 +19,10 @@ export class RegistroListComponent implements OnInit {
   categorias: any[] = [];
   categoria: any;
   registros: any[] = [];
+
+  page: any;
+  
+  public pageSizes: number[] = [20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1];
 
   tipos = [
     { value: null, viewValue: null },
@@ -41,13 +45,25 @@ export class RegistroListComponent implements OnInit {
     { value: '12', viewValue: 'dezembro' }
   ];
 
+  public pageable = {
+    size: 5,
+    page: 0,
+    sort: {
+      orders: [{
+        direction: "DESC",
+        property: "valor",
+        nullHandlingHint: "NATIVE"
+      }]
+    }
+  };
+
   constructor(public dialog: MdDialog, private _dialogService: TdDialogService,
     private _viewContainerRef: ViewContainerRef, public snackBar: MdSnackBar) {
 
   }
 
   ngOnInit(): void {
-    this.listRegistroById(null, null, null, null);
+    this.listRegistroById(null, null, null, this.pageable);
     this.listCategoriaByFiltersDesativada(null, null);
   }
 
@@ -57,6 +73,7 @@ export class RegistroListComponent implements OnInit {
     Broker.of("registroService").promise("listRegistroById", mes, ano, categoria, pageable)
       .then((result) => {
         this.registros = result.content;
+        this.page = result;
       })
       .catch((exception) => {
         console.log(exception.message);
@@ -96,7 +113,14 @@ export class RegistroListComponent implements OnInit {
   }
 
   public filtrar = function () {
-    this.listRegistroById(this.filtro.mes, this.filtro.ano, null, null)
+    this.listRegistroById(this.filtro.mes, this.filtro.ano, null, this.pageable)
+  }
+
+  public changePage(event: IPageChangeEvent): void {
+    this.pageable.page = (event.page - 1);
+    this.pageable.size = (event.pageSize);
+    this.filtrar();
+
   }
 
   openAlert(mensagem: String): void{

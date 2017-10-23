@@ -10,7 +10,7 @@
 
 
       <div>
-        <md-input-panel flex="10" class="push list-md-input-panel" >
+        <md-input-panel flex="10" class="push list-md-input-panel">
           <md-select placeholder="Mês" [(ngModel)]="filtro.mes">
             <md-option *ngFor="let mes of meses" [value]="mes.value">
               {{ mes.viewValue }}
@@ -23,7 +23,7 @@
         </md-input-container>
 
         <button md-raised-button class="push list-button" color="warn" (click)="filtrar(filtro)">Filtrar</button>
-        <div class="list-div1" >
+        <div class="list-div1">
           <a class="push list-a" [routerLink]="['../form']" color="warn" md-icon-button mdTooltip="Novo Registro">
             <md-icon class="list-md-icon">add_box</md-icon>
 
@@ -80,5 +80,13 @@
   </div>
 
 
+  <div layout="row" layout-align="center center">
+    <div flex="90" class="push-top">
+      <td-paging-bar #pagingBar [pageSize]="pageable?.size" [pageSizes]="pageSizes" [total]="page?.totalElements" (change)="changePage($event)">
+        <span td-paging-bar-label hide-xs>Registros por página:</span> {{pagingBar.range}}
+        <span hide-xs> de {{pagingBar.total}}</span>
+      </td-paging-bar>
+    </div>
+  </div>
 
 </md-card>

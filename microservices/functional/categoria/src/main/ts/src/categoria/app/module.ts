@@ -31,6 +31,7 @@ import {
   MdToolbarModule,
   MdGridListModule,
   MdTooltipModule,
+  MdPaginatorModule
 } from '@angular/material';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -55,12 +56,12 @@ import {
   CovalentStepsModule,
   TdDialogService,
   TdLayoutComponent,
+  IPageChangeEvent 
 } from '@covalent/core';
 //===============================APP MODULES=====================================
 import { appRoutingProviders, RoutingModule } from './routing.module';
 import 'rxjs/add/observable/throw';
 import { CategoriaFormModule } from './views/form/categoria-form.module';
-//import {CategoriaView} from '';
 //==============================APP SERVICES=====================================
 //==============================APP COMPONENTS===================================
 
@@ -82,7 +83,7 @@ export function HttpLoaderFactory(http: Http) {
     CategoriaViewComponent,
     CategoriaFormComponent,
     CategoriaDetailComponent,
-    //TabelaViewComponent
+    
   ],
   imports: [
     HttpModule,
@@ -101,6 +102,7 @@ export function HttpLoaderFactory(http: Http) {
     CovalentDataTableModule,
     CovalentDialogsModule,
     MdAutocompleteModule,
+    MdPaginatorModule,
     MdIconModule,
     MdSelectModule,
     MdSlideToggleModule,

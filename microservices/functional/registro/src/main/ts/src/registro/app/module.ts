@@ -57,6 +57,7 @@ import {
   CovalentPagingModule,
   CovalentStepsModule,
   TdDialogService,
+  IPageChangeEvent,
   TdLayoutComponent,
 } from '@covalent/core';
 //===============================APP MODULES=====================================
