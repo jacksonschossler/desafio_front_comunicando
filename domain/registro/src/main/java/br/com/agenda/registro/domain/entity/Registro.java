@@ -11,7 +11,6 @@ import javax.persistence.Enumerated;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.annotations.Type;
-import org.hibernate.boot.archive.scan.spi.ClassDescriptor.Categorization;
 import org.hibernate.envers.Audited;
 
 import br.com.agenda.categoria.domain.entity.Categoria;

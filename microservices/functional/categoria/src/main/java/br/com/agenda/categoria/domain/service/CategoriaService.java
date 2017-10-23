@@ -1,6 +1,5 @@
 package br.com.agenda.categoria.domain.service;
 
-import javax.validation.constraints.AssertFalse;
 
 import org.directwebremoting.annotations.RemoteProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -19,8 +17,6 @@ import br.com.agenda.categoria.domain.entity.Tipo;
 import br.com.agenda.categoria.domain.repository.ICategoriaRepository;
 import br.com.agenda.common.application.i18n.MessageSourceHolder;
 import br.com.agenda.registro.application.restful.IRegistroResource;
-import br.com.agenda.registro.domain.entity.Registro;
-import br.com.agenda.categoria.domain.entity.Categoria;
 
 @Service
 @RemoteProxy
@@ -161,7 +157,7 @@ public class CategoriaService implements ICategoriaResource {
 	}
 
 	/**
-	 * Serviço para desativar categoria
+	 * Serviço para ativar/desativar categoria
 	 * 
 	 * @param id
 	 *            return categoria
@@ -169,21 +165,8 @@ public class CategoriaService implements ICategoriaResource {
 	public Categoria updateCategoriaToDesativada(Long id) {
 		Assert.notNull(id, this.messageSource.getMessage("categoria.null", null, LocaleContextHolder.getLocale()));
 		Categoria categoriaSaved = categoriaRepository.findOne(id);
-		categoriaSaved.setDesativada(!categoriaSaved.getDesativada());
-		return this.categoriaRepository.save(categoriaSaved);
-	}
-
-	/**
-	 * Serviço para ativar categoria
-	 * 
-	 * @param id
-	 *            return categoria
-	 */
-	public Categoria updateCategoriaToAtivada(Long id) {
-		Assert.notNull(id, this.messageSource.getMessage("categoria.null", null, LocaleContextHolder.getLocale()));
-		Categoria categoriaSaved = categoriaRepository.findOne(id);
-		Assert.isTrue(categoriaSaved.getDesativada(), "a categoria já esta ativada");
-		categoriaSaved.setDesativada(false);
+		categoriaSaved.mudaStatusCategoria();
+		
 		return this.categoriaRepository.save(categoriaSaved);
 	}
 

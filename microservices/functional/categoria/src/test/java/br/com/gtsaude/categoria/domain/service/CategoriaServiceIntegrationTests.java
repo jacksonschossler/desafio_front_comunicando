@@ -105,7 +105,7 @@ public class CategoriaServiceIntegrationTests extends AbstractIntegrationTests {
 	
 	//@Test
 	public void updateCategoriaToAtivadaMustPass() {
-		assertNotNull(categoriaService.updateCategoriaToAtivada(20L));
+		assertNotNull(categoriaService.updateCategoriaToDesativada(20L));
 		System.out.println("A CATEGORIA FOI DESATIVADA: ");
 	}
 	
