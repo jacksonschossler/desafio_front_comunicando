@@ -32,35 +32,42 @@ public class Registro extends AbstractEntity implements Serializable{
 	
 	private static final long serialVersionUID = 3138317258162531643L;
 	
-	
-
 	/*-------------------------------------------------------------------
 	 *				 		     ATTRIBUTES
 	 *-------------------------------------------------------------------*/
 	
+	/**
+	 * Valor de um registro
+	 */
 	@Column(nullable=false)
-	private Float valor;
+	private float valor;
 	
+	/**
+	 * Data de um registro
+	 */
 	@Column(nullable=false)
-	private LocalDateTime data; 
+	private LocalDateTime data;
 	
+	/**
+	 * Descricao do registro
+	 */
 	@Column(nullable=true)
 	private String descricao;
-	
+
 	/**
 	 * Categoria de registro
 	 */
 	@Type(type="transientEntity",parameters=@Parameter(name="entity",value="br.com.agenda.categoria.domain.entity.Categoria"))
 	@Column
 	private Categoria categoria;
-	
+
 	/**
 	 * Tipo(despesa,receita)
 	 */
 	@Column
 	@Enumerated(EnumType.ORDINAL)
 	private Tipo tipo;
-	
+
 	
 	
 	

@@ -12,3 +12,95 @@ $my-app-warn:    mat-palette($mat-teal);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 @include angular-material-theme($my-app-theme);
+
+//------------------------------REGISTRO-FORM----------------------------
+.form-h2{
+  text-align : center ;
+  color: #6E6E6E;
+}
+
+.form-div1{
+  min-height:10px;
+}
+
+.form-md-select{
+  min-width: 150px;
+}
+
+.form-input{
+  min-width: 800px;
+}
+
+.form-input2{
+  min-width: 100px;
+}
+
+.form-input3{
+  min-width: 1000px;
+}
+
+.form-div2{
+  min-width: 80%;
+}
+
+.form-div3{
+  min-height: 50px;
+}
+
+
+
+//------------------------------REGISTRO-LIST----------------------------
+
+.list-card{
+  min-width:99%;
+}
+
+.list-md-input-panel{
+  padding-top : 15px;
+}
+
+.list-button{
+  height: 36px;
+}
+
+.list-div1{
+  text-align: end;
+}
+
+.list-a{
+  text-align: left;
+}
+
+.list-md-icon{
+  font-size: 60px;
+}
+
+.list-div3{
+  text-align: right;
+}
+
+.list-span{
+  color: #6E6E6E
+}
+
+//------------------------------REGISTRO-CHART----------------------------
+
+.chart-card{
+  min-height: 50px; 
+  min-width:99%;
+}
+.chart-md-input-panel{
+  padding-top : 15px;
+}
+
+.chart-button{
+  height: 36px;
+}
+
+.chart-card2{
+  min-width:97%;
+}
+
+.chart-div1{
+  min-height: 400px;
+}

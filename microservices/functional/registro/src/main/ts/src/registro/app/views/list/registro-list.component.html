@@ -1,16 +1,16 @@
 <md-card>
   <div>
-    <h2 style="text-align : center ; color: #6E6E6E;">Lista de Registros</h2>
+    <h2 class="form-h2">Lista de Registros</h2>
   </div>
 
   <md-divider></md-divider>
 
-  <div layout="row" >
-    <md-card style=" min-width:99%">
+  <div layout="row">
+    <md-card class="list-card">
 
 
-      <div  >
-        <md-input-panel flex="10" class="push" style="padding-top : 15px">
+      <div>
+        <md-input-panel flex="10" class="push list-md-input-panel" >
           <md-select placeholder="Mês" [(ngModel)]="filtro.mes">
             <md-option *ngFor="let mes of meses" [value]="mes.value">
               {{ mes.viewValue }}
@@ -22,14 +22,14 @@
           <input mdInput maxlength="4" placeholder="Ano" [(ngModel)]="filtro.ano">
         </md-input-container>
 
-        <button md-raised-button class="push" style="height: 36px " color="warn" (click)="filtrar(filtro)">Filtrar</button>
-          <div style="text-align: end">
-          <a class="push" style="text-align: left" [routerLink]="['../form']" color="warn" md-icon-button mdTooltip="Novo Registro">
-              <md-icon style="font-size: 60px">add_box</md-icon>
-             
+        <button md-raised-button class="push list-button" color="warn" (click)="filtrar(filtro)">Filtrar</button>
+        <div class="list-div1" >
+          <a class="push list-a" [routerLink]="['../form']" color="warn" md-icon-button mdTooltip="Novo Registro">
+            <md-icon class="list-md-icon">add_box</md-icon>
+
           </a>
         </div>
-      </div>   
+      </div>
 
     </md-card>
   </div>
@@ -50,7 +50,7 @@
           <div flex="15"> {{registro.tipo}}</div>
           <div flex="25">{{registro.categoria.nome }}</div>
           <div flex="15"> {{registro?.data | date: "dd/MM/yyyy" }}</div>
-          <div flex="35" style=" text-align: right">{{registro.valor | number:".2-2"}}</div>
+          <div flex="35" class="list-div3">{{registro.valor | number:".2-2"}}</div>
           <div flex="10"></div>
 
         </md-panel-title>
@@ -59,7 +59,7 @@
 
       <div layout="row">
 
-        <span flex="85" style="color: #6E6E6E">
+        <span flex="85" class="list-span">
           Descrição: {{registro.descricao}}
         </span>
         <div flex>
@@ -70,7 +70,7 @@
           </a>
 
 
-          <a md-icon-button mdTooltip="Excluir"  (click)="removeRegistro(registro.id)">
+          <a md-icon-button mdTooltip="Excluir" (click)="removeRegistro(registro.id)">
             <md-icon>delete</md-icon>
           </a>
         </div>

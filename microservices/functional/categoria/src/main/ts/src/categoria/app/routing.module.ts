@@ -6,7 +6,7 @@ import { CategoriaFormComponent} from './views/form/categoria-form.component';
 import { CategoriaDetailComponent} from './views/detail/categoria-detail.component';
 
 const routes: Routes = [
-		//{path: '', redirectTo: 'categoria', pathMatch: 'full'},
+
 		{path: 'categoria',
 		children: [
 			{path: 'list', component :CategoriaViewComponent},
@@ -15,7 +15,7 @@ const routes: Routes = [
 			{path: 'edit/:id', component :CategoriaFormComponent}
 		]
 	},	
-	//{path: '**', redirectTo: ''}
+
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });

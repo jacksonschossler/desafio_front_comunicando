@@ -1,81 +1,64 @@
+<form #myForm="ngForm" class="categoria-form" [formGroup]="formulario" flex layout="row" layout-align="center center">
+  <div>
+    <md-card class="categoria-form-card" flex>
 
- <form #myForm="ngForm" class="categoria-form" [formGroup]="formulario" style = "min-width: 1700px"
-  flex layout="row" layout-align="center center" >
-  <div   >
-    <md-card style = "min-width: 1000px"flex>
-        
-            <h2 style="text-align : center ; color: #6E6E6E;">
-                    <a *ngIf="!categoria.id">Cadastrar Categoria</a>
-                    <a *ngIf="categoria.id">Editar Categoria</a>
-                    <!-- <a>Cadastrar Categoria</a> -->
-            </h2>
+      <h2 class="categoria-form-h2">
+        <a *ngIf="!categoria.id">Cadastrar Categoria</a>
+        <a *ngIf="categoria.id">Editar Categoria</a>
 
-            <div class="categoria-form-div">
+      </h2>
 
-                    <!-- <md-input-container class="categoria-form-input push" >
-                            <md-form-field class="categoria-full-width">
-                                <input mdInput type="text" placeholder="Tipo contábil"  formControlName="tipoForm"
-                                [(ngModel)]="categoria.tipo" [mdAutocomplete]="auto">
-                                <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayTipo">
-                                    <md-option *ngFor="let tipo of tipos" [value]="tipo.viewValue">
-                                            {{ tipo.viewValue }}
-                                    </md-option>
-                                </md-autocomplete>
-                            </md-form-field>
-                    </md-input-container> -->
-
-                    <!-- <md-input-container class="categoria-form-input push" > -->
-                            <!-- <md-form-field> -->
-                                <md-select class="push" placeholder="Tipo contábil"  formControlName="tipoForm"
-                                [(ngModel)]="categoria.tipo">
-                                    <md-option *ngFor="let tipo of tipos" [value]="tipo.value">
-                                            {{ tipo.viewValue }}
-                                    </md-option>
-                                </md-select>
-                            <!-- </md-form-field> -->
-                    <!-- </md-input-container> -->
-
-
-            </div>
-            <div class="categoria-form-div">
-          
-                    <md-input-container class="categoria-form-input push" >
-                            <md-form-field class="categoria-full-width">
-                                <input mdInput #message maxlength="144" placeholder="Nome" 
-                                        formControlName="nomeForm" [(ngModel)]="categoria.nome">
-                            </md-form-field>
-                            <md-hint class= "categoria-form-text" align="start">Digite um nome para a Categoria</md-hint>
-                            <md-hint class= "categoria-form-text"  align="end">{{message.value.length}} / 144</md-hint>
-                            <md-error>Este Campo é obrigatório</md-error>
-                    </md-input-container>
-                    
-            </div>
-
-            
-            
-                <div class="categoria-form-div">
-                    <md-input-container class="categoria-form-descricao push">
-                        
-                                
-                                  <md-form-field class="example-full-width">
-                                    <input mdInput #message2 maxlength="256" placeholder="Descrição" 
-                                        formControlName="descricaoForm" [(ngModel)]="categoria.descricao" >
-                                  </md-form-field>
-                                  <md-hint class= "categoria-form-text"  align="start">Digite um comentário para a categoria</md-hint>
-                                  <md-hint class= "categoria-form-text"  align="end">{{message2.value.length}} / 256</md-hint>
-                    </md-input-container>    
-                </div>
-
-                <div class="categoria-form-div push" align="end">
-                        <button md-raised-button color="warn" (click)="insertCategoria(categoria)">Salvar</button>
-                        
-                        <!-- <button md-raised-button [routerLink]="['']">Voltar</button> -->
-
-                </div>
+      <div class="categoria-form-div">
 
 
 
-    
+
+        <md-select class="push" placeholder="Tipo contábil" formControlName="tipoForm" [(ngModel)]="categoria.tipo">
+          <md-option *ngFor="let tipo of tipos" [value]="tipo.value">
+            {{ tipo.viewValue }}
+          </md-option>
+        </md-select>
+
+
+
+      </div>
+      <div class="categoria-form-div">
+
+        <md-input-container class="categoria-form-input push">
+          <md-form-field class="categoria-full-width">
+            <input mdInput #message maxlength="144" placeholder="Nome" formControlName="nomeForm" [(ngModel)]="categoria.nome">
+          </md-form-field>
+          <md-hint class="categoria-form-text" align="start">Digite um nome para a Categoria</md-hint>
+          <md-hint class="categoria-form-text" align="end">{{message.value.length}} / 144</md-hint>
+          <md-error>Este Campo é obrigatório</md-error>
+        </md-input-container>
+
+      </div>
+
+
+
+      <div class="categoria-form-div">
+        <md-input-container class="categoria-form-descricao push">
+
+
+          <md-form-field class="example-full-width">
+            <input mdInput #message2 maxlength="256" placeholder="Descrição" formControlName="descricaoForm" [(ngModel)]="categoria.descricao">
+          </md-form-field>
+          <md-hint class="categoria-form-text" align="start">Digite um comentário para a categoria</md-hint>
+          <md-hint class="categoria-form-text" align="end">{{message2.value.length}} / 256</md-hint>
+        </md-input-container>
+      </div>
+
+      <div class="categoria-form-div push" align="end">
+        <button md-raised-button color="warn" (click)="insertCategoria(categoria)">Salvar</button>
+
+        <!-- <button md-raised-button [routerLink]="['']">Voltar</button> -->
+
+      </div>
+
+
+
+
     </md-card>
   </div>
-  </form>
+</form>

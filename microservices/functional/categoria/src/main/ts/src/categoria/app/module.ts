@@ -1,7 +1,6 @@
 import {CategoriaViewComponent} from './views/categoria/categoria-view.component'
 import {CategoriaFormComponent} from './views/form/categoria-form.component'
 import {CategoriaDetailComponent} from './views/detail/categoria-detail.component'
-//import {TabelaViewComponent} from './views/tabela/tabela-view.component'
 import { AppComponent } from './app.component';
 
 //===============================ANGULAR MODULES=================================
@@ -124,7 +123,6 @@ export function HttpLoaderFactory(http: Http) {
     MdButtonToggleModule,
     FormsModule,
     ReactiveFormsModule,
-    //CategoriaFormModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -140,7 +138,6 @@ export function HttpLoaderFactory(http: Http) {
     CategoriaViewComponent,
     CategoriaFormComponent,
     CategoriaDetailComponent
-    //TabelaViewComponent
   ],
   providers: [
     appRoutingProviders,
@@ -152,7 +149,6 @@ export function HttpLoaderFactory(http: Http) {
     CategoriaViewComponent,
     CategoriaFormComponent,
     CategoriaDetailComponent
-    //TabelaViewComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

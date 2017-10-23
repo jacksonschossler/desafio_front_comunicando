@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-//import org.springframework.util.Assert;
 import org.junit.Assert;
 
 import br.com.agenda.categoria.application.restful.ICategoriaResource;
@@ -47,7 +46,6 @@ public class RegistroService implements IRegistroResource {
 	 * @param registro
 	 *            return registro
 	 */
-	@Override
 	public Registro insertRegistro(Registro registro) {
 		Assert.assertNotNull(this.messageSource.getMessage("registro.null", null, LocaleContextHolder.getLocale()),
 				registro);
@@ -61,7 +59,7 @@ public class RegistroService implements IRegistroResource {
 	 * @param id
 	 *            return registro
 	 */
-	@Override
+
 	@Transactional(readOnly = true)
 	public Registro findRegistroById(Long id) {
 		final Registro registro = this.registroRepository.findOne(id);
@@ -92,11 +90,8 @@ public class RegistroService implements IRegistroResource {
 	 * @param pageRequest
 	 *            return registros
 	 */
-	@Override
 	public Page<Registro> listRegistroById(Integer mes, Integer ano, Long categoria, PageRequest pageRequest) {
-		// TODO Auto-generated method stub
-		// final Categoria categoriaSet =
-		// this.categoriaResource.findCategoriaById(categoria);
+
 		Page<Registro> registros = this.registroRepository.listByFilters(mes, ano, categoria, pageRequest);
 		for (Registro registro : registros.getContent()) {
 			registro.setCategoria(this.categoriaResource.findCategoriaById(registro.getCategoria().getId()));
@@ -110,21 +105,19 @@ public class RegistroService implements IRegistroResource {
 	 * @param id
 	 *            return void
 	 */
-	@Override
 	public void removeRegistro(Long id) {
 		Assert.assertNotNull("ID DO REGISTRO NÃO ENCONTRADO", id);
 		Registro registro = this.registroRepository.findOne(id);
 
 		this.registroRepository.delete(registro);
 	}
-
+	
 	/**
 	 * Serviço para atualziar um registro
 	 * 
 	 * @param registro
 	 *            return registro
 	 */
-	@Override
 	public Registro updateRegistro(Registro registro) {
 		Assert.assertNotNull(this.messageSource.getMessage("registroId.null", null, LocaleContextHolder.getLocale()),
 				registro.getId());

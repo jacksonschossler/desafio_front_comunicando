@@ -35,26 +35,7 @@ public interface ICategoriaResource {
 	@Path("/{id}")
 	public Categoria findCategoriaById( @PathParam("id") Long id);
 	
-	@POST
-	@Path("/insert")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Categoria insertCategoria(Categoria categoria);
-	
-//	@GET
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	public Page<Categoria> listCategoriaByFilters( @QueryParam("tipo") Tipo tipo,
-//													@QueryParam("nome") String nome,
-//													@QueryParam("descricao") String descricao,
-//													@QueryParam("desativada") Boolean desativada,
-//													PageRequest pageRequest			
-//													);
-	
-	@GET
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Page<Categoria> listCategoriaByFilters(  //@QueryParam("tipo") Tipo tipo,
-													@QueryParam("nome") String nome,
-													PageRequest pageRequest			
-													);
+
 	
 	@GET
 	@Path("/listCategoriaByFiltersDesativada/")
@@ -62,30 +43,5 @@ public interface ICategoriaResource {
 	public Page<Categoria> listCategoriaByFiltersDesativada(@QueryParam("nome") String nome,
 															@QueryParam("pageRequest")PageRequest pageRequest			
 													);
-	
-	
-	@DELETE
-	@Path("/id")
-	public void removeCategoria( @PathParam("id") Long id);
-	
-
-	@POST
-	@Path("/update")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Categoria updateCategoria(Categoria categoria);
-	
-	@POST
-	@Path("/updatedesativada")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Categoria updateCategoriaToDesativada(Long id);
-	
-	
-	@POST
-	@Path("/updateativada")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Categoria updateCategoriaToAtivada(Long id);
-
-	
-	
-	
+		
 }

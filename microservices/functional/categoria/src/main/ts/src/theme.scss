@@ -12,9 +12,11 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 @include angular-material-theme($my-app-theme);
 
+//-----------------------------CATEGORIA-FORM--------------------------------- 
 .categoria-form{
     min-width: 40%;
-    max-width: 80%;   
+    max-width: 80%;  
+    min-width: 1700px 
 }
 
 .categoria-form-div {
@@ -35,4 +37,46 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 }
 .categoria-form-text{
     color: #6E6E6E;
+}
+
+.categoria-form-card{
+  min-width: 1000px;
+  }
+
+.categoria-form-h2{
+  text-align : center ;
+  color: #6E6E6E
+}
+
+//-----------------------------CATEGORIA-LIST---------------------------------
+
+.categoria-list-h2{
+  text-align : center ;
+  color: #6E6E6E;
+}
+
+.categoria-list-card{
+  min-height: 50px; 
+  min-width:99%;
+}
+.categoria-list-md-input-panel{
+  padding-top : 15px;
+}
+
+.categoria-list-md-raised-button{
+  max-height: 40px;
+}
+
+.categoria-list-a{
+  text-align: left
+}
+
+.categoria-list-md-icon{
+  font-size: 60px;
+  padding-top: 10px; 
+  padding-left: 30px
+}
+
+.categoria-list-span{
+  color: #6E6E6E;
 }

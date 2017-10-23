@@ -26,39 +26,11 @@ import br.com.agenda.registro.domain.entity.Registro;
 public interface IRegistroResource {
 	
 	
-	@GET
-	@Path("/{id}")
-	public Registro findRegistroById( @PathParam("id") Long id);
-	
-	@POST
-	@Path("/insert")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Registro insertRegistro(Registro registro);
-	
+
+
 	@GET
 	@Path("/verifica/{id}")
 	public Boolean verificaCategoriaAssociada( @PathParam("id") Long id);
-	
-	//listCategoriaById VAI SER CHAMADO VIA REST
-	
-	@GET
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Page<Registro> listRegistroById( @QueryParam("mes") Integer mes,
-											@QueryParam("ano") Integer ano,
-											@QueryParam("categoria") Long categoria,
-											PageRequest pageRequest
-											);
-	
-	
-	@DELETE
-	@Path("/{id}")
-	public void removeRegistro(@PathParam("id") Long id);
-	
-	@POST
-	@Path("/update")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Registro updateRegistro(Registro registro);
-	
 	
 	
 }

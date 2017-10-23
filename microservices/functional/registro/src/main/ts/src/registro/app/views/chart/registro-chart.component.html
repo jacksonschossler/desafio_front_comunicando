@@ -1,77 +1,60 @@
-
 <div layout-align="center center" layout-margin>
 
   <div>
-    <h2 style="text-align : center ; color: #6E6E6E;">Gráfico de Registros</h2>
+    <h2 class="form-h2">Gráfico de Registros</h2>
   </div>
-<md-card>
-  <md-divider></md-divider>
+  <md-card>
+    <md-divider></md-divider>
 
-  <div layout="row" flex>
-    <md-card style="min-height: 50px; min-width:99%">
+    <div layout="row" flex>
+      <md-card class="chart-card">
+
+        <div layout="row">
+
+          <md-input-panel flex="10" class="push chart-md-input-panel">
+            <md-select placeholder="Mês" [(ngModel)]="filtro.mes">
+              <md-option *ngFor="let mes of meses" [value]="mes.value">
+                {{ mes.viewValue }}
+              </md-option>
+            </md-select>
+          </md-input-panel>
+
+          <md-input-container flex="15" class="push">
+            <input mdInput maxlength="4" placeholder="Ano" [(ngModel)]="filtro.ano">
+          </md-input-container>
+
+          <button md-raised-button class="push chart-button" color="warn" (click)="filtrar(filtro)">Gerar Gráfico</button>
+        </div>
+
+      </md-card>
+    </div>
+
+    <md-card class="chart-card2">
 
 
-      <div layout="row">
+      <div class="chart-div1" flex layout="row">
+        <div flex *ngIf="(registrosValorTipo.length)">
+          <div class="form-h2">Gráfico por despesa/receita</div>
+          <canvas baseChart [data]="registrosValorTipo" [labels]="registrosNomeTipo" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
 
 
-        <md-input-panel flex="10" class="push" style="padding-top : 15px">
-          <md-select placeholder="Mês" [(ngModel)]="filtro.mes">
-            <md-option *ngFor="let mes of meses" [value]="mes.value">
-              {{ mes.viewValue }}
-            </md-option>
-          </md-select>
-        </md-input-panel>
+        <div flex *ngIf="(registrosValorReceita.length)">
+          <div class="form-h2">Gráfico somente receitas</div>
+          <canvas baseChart [data]="registrosValorReceita" [labels]="registrosNomeReceita" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
 
-        <md-input-container flex="15" class="push">
-          <input mdInput maxlength="4" placeholder="Ano" [(ngModel)]="filtro.ano">
-        </md-input-container>
-
-        <button md-raised-button class="push" style="height: 36px " color="warn" (click)="filtrar(filtro)">Gerar Gráfico</button>
-
+        <div flex *ngIf="(registrosValorDespesa.length)">
+          <div class="form-h2">Gráfico somente despesas</div>
+          <canvas baseChart [data]="registrosValorDespesa" [labels]="registrosNomeDespesa" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
 
       </div>
-
     </md-card>
-  </div>
 
-<md-card  style="min-width:97%">
-
-
-  <div style="min-height: 400px" flex layout="row">
-    <div flex  *ngIf="(registrosValorTipo.length)">
-      <div style="text-align:center ; color: #6E6E6E">Gráfico por despesa/receita</div>
-        <canvas baseChart
-                [data]="registrosValorTipo"
-                [labels]="registrosNomeTipo"
-                [chartType]="pieChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-    </div>
-
-
-  <div flex  *ngIf="(registrosValorReceita.length)">
-    <div style="text-align:center ;color: #6E6E6E">Gráfico somente receitas</div>
-      <canvas baseChart
-              [data]="registrosValorReceita"
-              [labels]="registrosNomeReceita"
-              [chartType]="pieChartType"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)"></canvas>
-  </div>
-
-  <div flex  *ngIf="(registrosValorDespesa.length)">
-      <div style="text-align:center ;color: #6E6E6E">Gráfico somente despesas</div>
-        <canvas baseChart
-                [data]="registrosValorDespesa"
-                [labels]="registrosNomeDespesa"
-                [chartType]="pieChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-    </div>
-
-</div>
-</md-card>
-
-</md-card>
+  </md-card>
 
 </div>
